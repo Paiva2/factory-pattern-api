@@ -7,5 +7,5 @@ import java.util.Optional;
 public interface UserDataProvider {
     User register(User user);
 
-    Optional<User> userExists(String email);
+    Optional<User> findByEmail(String email);
 }

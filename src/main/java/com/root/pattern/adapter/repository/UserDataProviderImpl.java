@@ -18,7 +18,7 @@ public class UserDataProviderImpl implements UserDataProvider {
     }
 
     @Override
-    public Optional<User> userExists(String email) {
+    public Optional<User> findByEmail(String email) {
         return this.userDataRepository.findByEmail(email);
     }
 }
