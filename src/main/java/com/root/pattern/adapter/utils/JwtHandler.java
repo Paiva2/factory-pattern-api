@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.root.pattern.adapter.exceptions.BadRequestException;
+import com.root.pattern.domain.enums.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,13 +20,14 @@ public class JwtHandler {
     @Value("${jwt.issuer}")
     private String issuer;
 
-    public String generate(String subject) {
+    public String generate(String subject, Role role) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(this.jwtSecret);
             String token = JWT.create()
                     .withIssuer(this.issuer)
                     .withExpiresAt(this.tokenExpirationTime())
                     .withSubject(subject)
+                    .withClaim("app-role", role.toString())
                     .sign(algorithm);
 
             return token;

@@ -4,6 +4,7 @@ import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.ConflictException;
 import com.root.pattern.domain.entity.User;
+import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.UserDataProvider;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class RegisterUserUsecase {
         String hashPassword = this.encodePassword(newUser.getPassword());
 
         newUser.setPassword(hashPassword);
+        newUser.setRole(Role.USER);
 
         User register = this.userDataProvider.register(newUser);
 
@@ -74,6 +76,7 @@ public class RegisterUserUsecase {
                 .id(user.getId())
                 .email(user.getEmail())
                 .name(user.getName())
+                .role(user.getRole())
                 .createdAt(user.getCreatedAt())
                 .build();
     }

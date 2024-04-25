@@ -37,7 +37,10 @@ public class UserControllerImpl implements UserController {
     ) {
         UserOutputDTO outputDTO = this.authenticateUserUsecase.exec(dto.toEntity());
 
-        String authToken = this.jwtHandler.generate(String.valueOf(outputDTO.getId()));
+        String authToken = this.jwtHandler.generate(
+                String.valueOf(outputDTO.getId()),
+                outputDTO.getRole()
+        );
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 AuthUserDTO.builder().email(outputDTO.getEmail()).authToken(authToken).build()

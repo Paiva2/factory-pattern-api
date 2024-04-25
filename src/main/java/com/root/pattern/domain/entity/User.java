@@ -1,11 +1,13 @@
 package com.root.pattern.domain.entity;
 
+import com.root.pattern.domain.enums.Role;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,6 +30,20 @@ public class User {
 
     @Column(name = "U_NAME", nullable = false)
     private String name;
+
+    @Column(name = "U_ROLE", updatable = false, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "TB_USER_FAVORITE_LIST",
+            joinColumns = {@JoinColumn(name = "USF_USER_ID", referencedColumnName = "U_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "USF_FAVORITE_ID", referencedColumnName = "FAV_ID")})
+    private Favorite userFavoriteList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Playlist> playlists;
 
     @CreationTimestamp
     @Column(name = "U_CREATED_AT", updatable = false, nullable = false)
