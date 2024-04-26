@@ -5,7 +5,7 @@ import com.root.pattern.adapter.dto.user.AuthenticateUserDTO;
 import com.root.pattern.adapter.dto.user.RegisterUserDTO;
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.utils.JwtHandler;
-import com.root.pattern.domain.usecase.user.AuthenticateUserUsecase;
+import com.root.pattern.domain.usecase.user.authenticateUserUsecase.AuthenticateUserUsecase;
 import com.root.pattern.domain.usecase.user.RegisterUserUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

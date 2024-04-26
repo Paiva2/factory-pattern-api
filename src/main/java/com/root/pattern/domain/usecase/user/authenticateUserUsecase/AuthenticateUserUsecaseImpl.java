@@ -1,4 +1,4 @@
-package com.root.pattern.domain.usecase.user;
+package com.root.pattern.domain.usecase.user.authenticateUserUsecase;
 
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Builder
 @AllArgsConstructor
-public class AuthenticateUserUsecase {
+public class AuthenticateUserUsecaseImpl implements AuthenticateUserUsecase {
     private final UserDataProvider userDataProvider;
     private final PasswordEncoder passwordEncoder;
 
@@ -30,7 +30,7 @@ public class AuthenticateUserUsecase {
         return this.mountOutputDto(getUser);
     }
 
-    private void inputValidations(User user) {
+    public void inputValidations(User user) {
         if (Objects.isNull(user.getEmail())) {
             throw new BadRequestException("User email can't be empty");
         }
@@ -40,26 +40,26 @@ public class AuthenticateUserUsecase {
         }
     }
 
-    private User validateIfUserExists(String userEmail) {
+    public User validateIfUserExists(String userEmail) {
         User getUser = this.userDataProvider.findByEmail(userEmail)
                 .orElseThrow(() -> new NotFoundException("User"));
 
         return getUser;
     }
 
-    private void validateIfUserIsDisabled(Date disabledAt) {
+    public void validateIfUserIsDisabled(Date disabledAt) {
         if (Objects.nonNull(disabledAt)) {
             throw new ForbiddenException("User is disabled");
         }
     }
 
-    private void checkCredentials(String rawPass, String hashedPass) {
+    public void checkCredentials(String rawPass, String hashedPass) {
         if (!this.passwordEncoder.matches(rawPass, hashedPass)) {
             throw new ForbiddenException("Wrong credentials");
         }
     }
 
-    private UserOutputDTO mountOutputDto(User user) {
+    public UserOutputDTO mountOutputDto(User user) {
         return UserOutputDTO.builder()
                 .id(user.getId())
                 .email(user.getEmail())
