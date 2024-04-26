@@ -1,7 +1,7 @@
 package com.root.pattern.adapter.repository;
 
 import com.root.pattern.domain.entity.User;
-import com.root.pattern.domain.interfaces.UserDataProvider;
+import com.root.pattern.domain.interfaces.repository.UserDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

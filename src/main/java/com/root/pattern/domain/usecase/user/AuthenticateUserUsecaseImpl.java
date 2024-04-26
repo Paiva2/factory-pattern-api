@@ -1,11 +1,12 @@
-package com.root.pattern.domain.usecase.user.authenticateUserUsecase;
+package com.root.pattern.domain.usecase.user;
 
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
-import com.root.pattern.domain.interfaces.UserDataProvider;
+import com.root.pattern.domain.interfaces.repository.UserDataProvider;
+import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.security.crypto.password.PasswordEncoder;

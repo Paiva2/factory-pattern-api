@@ -1,8 +1,8 @@
 package com.root.pattern.application.factory.user;
 
 import com.root.pattern.adapter.repository.UserDataProviderImpl;
-import com.root.pattern.domain.usecase.user.authenticateUserUsecase.AuthenticateUserUsecase;
-import com.root.pattern.domain.usecase.user.authenticateUserUsecase.AuthenticateUserUsecaseImpl;
+import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
+import com.root.pattern.domain.usecase.user.AuthenticateUserUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;

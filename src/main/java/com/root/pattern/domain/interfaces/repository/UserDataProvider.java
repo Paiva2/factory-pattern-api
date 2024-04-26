@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces;
+package com.root.pattern.domain.interfaces.repository;
 
 import com.root.pattern.domain.entity.User;
 

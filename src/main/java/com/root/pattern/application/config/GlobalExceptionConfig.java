@@ -1,5 +1,6 @@
 package com.root.pattern.application.config;
 
+import com.root.pattern.adapter.exceptions.ForbiddenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,6 +25,17 @@ public class GlobalExceptionConfig {
         Map<String, Object> errorMapping = new LinkedHashMap<String, Object>() {{
             put("status", 422);
             put("errors", errors);
+        }};
+
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorMapping);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    private ResponseEntity<Map<String, Object>> forbiddenExceptionHandler(ForbiddenException exception) {
+
+        Map<String, Object> errorMapping = new LinkedHashMap<String, Object>() {{
+            put("status", 403);
+            put("error", exception.getMessage());
         }};
 
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorMapping);

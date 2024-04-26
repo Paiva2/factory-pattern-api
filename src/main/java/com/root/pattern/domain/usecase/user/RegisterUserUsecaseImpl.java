@@ -5,7 +5,8 @@ import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.ConflictException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
-import com.root.pattern.domain.interfaces.UserDataProvider;
+import com.root.pattern.domain.interfaces.repository.UserDataProvider;
+import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @Builder
 @AllArgsConstructor
-public class RegisterUserUsecase {
+public class RegisterUserUsecaseImpl implements RegisterUserUsecase {
     private final UserDataProvider userDataProvider;
     private final PasswordEncoder passwordEncoder;
     private final MailValidator mailValidator;
@@ -35,7 +36,7 @@ public class RegisterUserUsecase {
         return this.mountOutputDto(register);
     }
 
-    private void inputValidations(User dto) {
+    public void inputValidations(User dto) {
         if (Objects.isNull(dto)) {
             throw new BadRequestException("User can't be empty");
         }
@@ -57,7 +58,7 @@ public class RegisterUserUsecase {
         }
     }
 
-    private void validateIfUserAlreadyExists(User user) {
+    public void validateIfUserAlreadyExists(User user) {
         Optional<User> doesUserAlreadyExists = this.userDataProvider.findByEmail(
                 user.getEmail()
         );
@@ -67,11 +68,11 @@ public class RegisterUserUsecase {
         }
     }
 
-    private String encodePassword(String password) {
+    public String encodePassword(String password) {
         return this.passwordEncoder.encode(password);
     }
 
-    private UserOutputDTO mountOutputDto(User user) {
+    public UserOutputDTO mountOutputDto(User user) {
         return UserOutputDTO.builder()
                 .id(user.getId())
                 .email(user.getEmail())
