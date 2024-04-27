@@ -1,6 +1,6 @@
-package com.root.pattern.adapter.dto.user;
+package com.root.pattern.adapter.dto.musician;
 
-import com.root.pattern.domain.entity.User;
+import com.root.pattern.domain.entity.Musician;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegisterUserDTO {
+public class RegisterMusicianDTO {
     @NotEmpty
     @NotNull
     @NotBlank
@@ -32,8 +32,8 @@ public class RegisterUserDTO {
     @Email
     private String email;
 
-    public User toEntity() {
-        return User.builder()
+    public Musician toEntity() {
+        return Musician.builder()
             .name(this.name)
             .password(this.password)
             .email(this.email)

@@ -16,4 +16,14 @@ public class MusicianDataProviderImpl implements MusicianDataProvider {
     public Optional<Musician> findById(Long id) {
         return this.musicianRepository.findById(id);
     }
+
+    @Override
+    public Musician register(Musician newMusician) {
+        return this.musicianRepository.save(newMusician);
+    }
+
+    @Override
+    public Optional<Musician> findByEmailOrName(String email, String name) {
+        return this.musicianRepository.findByEmailOrName(email, name);
+    }
 }

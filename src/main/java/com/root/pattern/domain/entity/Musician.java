@@ -29,6 +29,9 @@ public class Musician {
     @Column(name = "MUS_EMAIL", unique = true, nullable = false)
     private String email;
 
+    @Column(name = "MUS_NAME", unique = true, nullable = false)
+    private String name;
+
     @Column(name = "MUS_PASSWORD", nullable = false)
     private String password;
 
@@ -48,7 +51,7 @@ public class Musician {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "musician")
     List<Album> albums;
-    
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "musician")
     List<Music> musics;
 }

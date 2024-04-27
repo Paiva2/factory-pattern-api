@@ -23,10 +23,10 @@ public class SecurityConfig {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(req -> {
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/register").permitAll();
+                req.antMatchers(HttpMethod.POST, "/api/v1/musician/register").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/login").permitAll();
                 req.anyRequest().authenticated();
-            })
-            .addFilterBefore(requestFilterChain, UsernamePasswordAuthenticationFilter.class)
+            }).addFilterBefore(requestFilterChain, UsernamePasswordAuthenticationFilter.class)
             .csrf(csrf -> csrf.disable()).cors(cors -> cors.disable());
 
         return http.build();
