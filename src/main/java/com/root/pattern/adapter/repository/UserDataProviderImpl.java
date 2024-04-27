@@ -10,15 +10,20 @@ import java.util.Optional;
 @AllArgsConstructor
 @Component
 public class UserDataProviderImpl implements UserDataProvider {
-    private final UserDataRepository userDataRepository;
+    private final UserRepository userRepository;
 
     @Override
     public User register(User user) {
-        return this.userDataRepository.save(user);
+        return this.userRepository.save(user);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return this.userDataRepository.findByEmail(email);
+        return this.userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<User> findById(Long userId) {
+        return this.userRepository.findById(userId);
     }
 }

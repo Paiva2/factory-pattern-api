@@ -1,6 +1,7 @@
 package com.root.pattern.application.config;
 
 import com.root.pattern.adapter.exceptions.ForbiddenException;
+import com.root.pattern.adapter.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,7 +20,7 @@ public class GlobalExceptionConfig {
     private ResponseEntity<Map<String, Object>> outputExceptionHandler(MethodArgumentNotValidException exception) {
 
         List<String> errors = exception.getFieldErrors().stream().map(err ->
-                MessageFormat.format("{0} {1}", err.getField(), err.getDefaultMessage())
+            MessageFormat.format("{0} {1}", err.getField(), err.getDefaultMessage())
         ).collect(Collectors.toList());
 
         Map<String, Object> errorMapping = new LinkedHashMap<String, Object>() {{

@@ -6,10 +6,12 @@ import com.root.pattern.adapter.dto.user.RegisterUserDTO;
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.utils.JwtHandler;
 import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.GetUserProfileUsecase;
 import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 public class UserControllerImpl implements UserController {
     private final RegisterUserUsecase registerUserUseCase;
     private final AuthenticateUserUsecase authenticateUserUsecase;
+    private final GetUserProfileUsecase getUserProfileUsecase;
     private final JwtHandler jwtHandler;
 
     @Override
@@ -45,5 +48,12 @@ public class UserControllerImpl implements UserController {
         return ResponseEntity.status(HttpStatus.OK).body(
                 AuthUserDTO.builder().email(outputDTO.getEmail()).authToken(authToken).build()
         );
+    }
+
+    @Override
+    public ResponseEntity<UserOutputDTO> getProfile(Authentication authentication) {
+        UserOutputDTO outputDTO = this.getUserProfileUsecase.exec(Long.valueOf(authentication.getName()));
+
+        return ResponseEntity.status(HttpStatus.OK).body(outputDTO);
     }
 }
