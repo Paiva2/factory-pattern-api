@@ -61,7 +61,7 @@ public class RegisterMusicianUsecaseImpl implements RegisterMusicianUsecase {
     public void checkIfUserAlreadyExists(String musicianEmail, String musicianName) {
         Optional<Musician> musician = this.musicianDataProvider.findByEmailOrName(musicianEmail, musicianName);
 
-        if (musician.isPresent()) {
+        if (Objects.nonNull(musician)) {
             throw new ConflictException("Musician already exists");
         }
     }
