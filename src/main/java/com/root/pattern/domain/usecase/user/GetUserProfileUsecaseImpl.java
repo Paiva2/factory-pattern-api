@@ -34,7 +34,7 @@ public class GetUserProfileUsecaseImpl implements GetUserProfileUsecase {
     @Override
     public User validateIfUserExists(Long userId) {
         User user = this.userDataProvider.findById(userId)
-                .orElseThrow(() -> new NotFoundException("User not found"));
+            .orElseThrow(() -> new NotFoundException("User"));
 
         return user;
     }
@@ -42,11 +42,11 @@ public class GetUserProfileUsecaseImpl implements GetUserProfileUsecase {
     @Override
     public UserOutputDTO mountOutput(User user) {
         return UserOutputDTO.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .name(user.getName())
-                .role(user.getRole())
-                .createdAt(user.getCreatedAt())
-                .build();
+            .id(user.getId())
+            .email(user.getEmail())
+            .name(user.getName())
+            .role(user.getRole())
+            .createdAt(user.getCreatedAt())
+            .build();
     }
 }
