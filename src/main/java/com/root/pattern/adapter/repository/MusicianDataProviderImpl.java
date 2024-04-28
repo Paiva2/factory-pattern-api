@@ -18,6 +18,11 @@ public class MusicianDataProviderImpl implements MusicianDataProvider {
     }
 
     @Override
+    public Optional<Musician> findByEmail(String email) {
+        return this.musicianRepository.findByEmail(email);
+    }
+
+    @Override
     public Musician register(Musician newMusician) {
         return this.musicianRepository.save(newMusician);
     }

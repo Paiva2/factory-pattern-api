@@ -1,7 +1,7 @@
 package com.root.pattern.adapter.controller.user;
 
 import com.root.pattern.adapter.dto.user.AuthUserDTO;
-import com.root.pattern.adapter.dto.user.AuthenticateUserDTO;
+import com.root.pattern.adapter.dto.user.LoginUserDTO;
 import com.root.pattern.adapter.dto.user.RegisterUserDTO;
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public interface UserController {
     ResponseEntity<UserOutputDTO> registerNewUser(RegisterUserDTO dto);
 
     @PostMapping("/login")
-    ResponseEntity<AuthUserDTO> authenticateUser(AuthenticateUserDTO dto);
+    ResponseEntity<AuthUserDTO> authenticateUser(LoginUserDTO dto);
 
     @GetMapping("/profile")
     ResponseEntity<UserOutputDTO> getProfile(Authentication authentication);

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AuthenticateUserDTO {
+public class LoginUserDTO {
     @Email
     @NotBlank
     @NotNull

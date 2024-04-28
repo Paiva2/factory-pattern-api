@@ -25,6 +25,9 @@ public class SecurityConfig {
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/register").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/musician/register").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/login").permitAll();
+                req.antMatchers(HttpMethod.POST, "/api/v1/musician/login").permitAll();
+                req.antMatchers(HttpMethod.GET, "/api/v1/user/profile").hasAnyRole("USER", "ADMIN");
+                req.antMatchers(HttpMethod.GET, "/api/v1/musician/profile").hasAnyRole("MUSICIAN", "ADMIN");
                 req.anyRequest().authenticated();
             }).addFilterBefore(requestFilterChain, UsernamePasswordAuthenticationFilter.class)
             .csrf(csrf -> csrf.disable()).cors(cors -> cors.disable());

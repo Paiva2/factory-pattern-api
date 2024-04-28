@@ -13,4 +13,7 @@ public interface MusicianRepository extends JpaRepository<Musician, Long> {
 
     @Query("SELECT m FROM Musician m WHERE m.email = :email OR m.name = :name")
     Optional<Musician> findByEmailOrName(@Param("email") String email, @Param("name") String name);
+
+    @Query("SELECT m FROM Musician m WHERE m.email = :email")
+    Optional<Musician> findByEmail(@Param("email") String email);
 }

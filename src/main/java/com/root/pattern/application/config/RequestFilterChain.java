@@ -119,7 +119,8 @@ public class RequestFilterChain extends OncePerRequestFilter {
         List<String> nonFilterableRoutes = Arrays.asList(
             "/api/v1/user/register",
             "/api/v1/musician/register",
-            "/api/v1/user/login"
+            "/api/v1/user/login",
+            "/api/v1/musician/login"
         );
 
         return nonFilterableRoutes.contains(request.getRequestURI());

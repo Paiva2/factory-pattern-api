@@ -1,7 +1,7 @@
 package com.root.pattern.adapter.controller.user;
 
 import com.root.pattern.adapter.dto.user.AuthUserDTO;
-import com.root.pattern.adapter.dto.user.AuthenticateUserDTO;
+import com.root.pattern.adapter.dto.user.LoginUserDTO;
 import com.root.pattern.adapter.dto.user.RegisterUserDTO;
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.utils.JwtHandler;
@@ -27,7 +27,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity<UserOutputDTO> registerNewUser(
-            @RequestBody @Valid RegisterUserDTO dto
+        @RequestBody @Valid RegisterUserDTO dto
     ) {
         UserOutputDTO newUser = this.registerUserUseCase.exec(dto.toEntity());
 
@@ -36,17 +36,17 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity<AuthUserDTO> authenticateUser(
-            @RequestBody @Valid AuthenticateUserDTO dto
+        @RequestBody @Valid LoginUserDTO dto
     ) {
         UserOutputDTO outputDTO = this.authenticateUserUsecase.exec(dto.toEntity());
 
         String authToken = this.jwtHandler.generate(
-                String.valueOf(outputDTO.getId()),
-                outputDTO.getRole()
+            String.valueOf(outputDTO.getId()),
+            outputDTO.getRole()
         );
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                AuthUserDTO.builder().email(outputDTO.getEmail()).authToken(authToken).build()
+            AuthUserDTO.builder().email(outputDTO.getEmail()).authToken(authToken).build()
         );
     }
 
