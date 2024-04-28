@@ -26,4 +26,9 @@ public class UserDataProviderImpl implements UserDataProvider {
     public Optional<User> findById(Long userId) {
         return this.userRepository.findById(userId);
     }
+
+    @Override
+    public User update(User user) {
+        return this.userRepository.save(user);
+    }
 }

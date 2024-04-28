@@ -1,13 +1,11 @@
 package com.root.pattern.adapter.controller.user;
 
-import com.root.pattern.adapter.dto.user.AuthUserDTO;
-import com.root.pattern.adapter.dto.user.LoginUserDTO;
-import com.root.pattern.adapter.dto.user.RegisterUserDTO;
-import com.root.pattern.adapter.dto.user.UserOutputDTO;
+import com.root.pattern.adapter.dto.user.*;
 import com.root.pattern.adapter.utils.JwtHandler;
 import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
 import com.root.pattern.domain.interfaces.usecase.GetUserProfileUsecase;
 import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.UpdateUserProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +21,8 @@ public class UserControllerImpl implements UserController {
     private final RegisterUserUsecase registerUserUseCase;
     private final AuthenticateUserUsecase authenticateUserUsecase;
     private final GetUserProfileUsecase getUserProfileUsecase;
+    private final UpdateUserProfileUsecase updateUserProfileUsecase;
+
     private final JwtHandler jwtHandler;
 
     @Override
@@ -55,5 +55,16 @@ public class UserControllerImpl implements UserController {
         UserOutputDTO outputDTO = this.getUserProfileUsecase.exec(Long.valueOf(authentication.getName()));
 
         return ResponseEntity.status(HttpStatus.OK).body(outputDTO);
+    }
+
+    @Override
+    public ResponseEntity<UserOutputDTO> updateProfile(
+        Authentication authentication,
+        @RequestBody @Valid UpdateUserProfileDTO dto
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        UserOutputDTO output = this.updateUserProfileUsecase.exec(dto.toEntity(userId));
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
     }
 }

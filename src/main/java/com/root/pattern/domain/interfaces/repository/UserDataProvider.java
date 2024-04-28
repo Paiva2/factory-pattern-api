@@ -10,4 +10,6 @@ public interface UserDataProvider {
     Optional<User> findByEmail(String email);
 
     Optional<User> findById(Long userId);
+
+    User update(User user);
 }
