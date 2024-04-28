@@ -16,7 +16,7 @@
 - [x] Register as an user or musician;
 - [x] Login as an user or musician;
 - [x] Get profile as user;
-- [ ] Get profile as musician;
+- [x] Get profile as musician;
 - [ ] Recover password;
 - [ ] Update profile as user or musician.
 
