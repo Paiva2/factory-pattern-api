@@ -3,6 +3,7 @@ package com.root.pattern.domain.usecase.user;
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.ConflictException;
+import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
@@ -29,6 +30,10 @@ public class UpdateUserProfileUsecaseImpl implements UpdateUserProfileUsecase {
         this.validateInputs(user);
 
         User getUser = this.checkIfUserExists(user.getId());
+
+        if (Objects.nonNull(getUser.getDisabledAt())) {
+            throw new ForbiddenException("User disabled");
+        }
 
         if (Objects.nonNull(user.getEmail())) {
             this.checkIfEmailAlreadyExists(user.getEmail(), getUser);

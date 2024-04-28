@@ -13,7 +13,7 @@ public interface UpdateUserProfileUsecase {
     void checkIfEmailAlreadyExists(String newEmail, User user);
 
     User checkIfUserExists(Long id);
-
+    
     UserOutputDTO mountOutput(User user);
 
     String hashNewPassword(String password);
