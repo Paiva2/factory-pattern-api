@@ -18,7 +18,7 @@
 - [x] Get profile as user;
 - [x] Get profile as musician;
 - [ ] Recover password;
-- [ ] Update profile as user or musician.
+- [x] Update profile as user or musician.
 
 #### User context
 
