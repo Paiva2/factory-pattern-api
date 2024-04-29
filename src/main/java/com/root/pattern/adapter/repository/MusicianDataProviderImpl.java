@@ -28,6 +28,11 @@ public class MusicianDataProviderImpl implements MusicianDataProvider {
     }
 
     @Override
+    public Musician update(Musician musician) {
+        return this.musicianRepository.save(musician);
+    }
+
+    @Override
     public Optional<Musician> findByEmailOrName(String email, String name) {
         return this.musicianRepository.findByEmailOrName(email, name);
     }

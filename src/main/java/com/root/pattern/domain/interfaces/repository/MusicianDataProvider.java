@@ -11,5 +11,7 @@ public interface MusicianDataProvider {
 
     Musician register(Musician newMusician);
 
+    Musician update(Musician musician);
+
     Optional<Musician> findByEmailOrName(String email, String name);
 }

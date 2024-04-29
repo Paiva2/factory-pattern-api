@@ -1,13 +1,11 @@
 package com.root.pattern.adapter.controller.musician;
 
-import com.root.pattern.adapter.dto.musician.AuthMusicianDTO;
-import com.root.pattern.adapter.dto.musician.LoginMusicianDTO;
-import com.root.pattern.adapter.dto.musician.MusicianOutputDTO;
-import com.root.pattern.adapter.dto.musician.RegisterMusicianDTO;
+import com.root.pattern.adapter.dto.musician.*;
 import com.root.pattern.adapter.utils.JwtHandler;
 import com.root.pattern.domain.usecase.musician.AuthMusicianUsecaseImpl;
 import com.root.pattern.domain.usecase.musician.GetMusicianProfileUsecaseImpl;
 import com.root.pattern.domain.usecase.musician.RegisterMusicianUsecaseImpl;
+import com.root.pattern.domain.usecase.musician.UpdateMusicianProfileUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +21,8 @@ public class MusicianControllerImpl implements MusicianController {
     private final RegisterMusicianUsecaseImpl registerMusicianUsecase;
     private final GetMusicianProfileUsecaseImpl getMusicianProfileUsecase;
     private final AuthMusicianUsecaseImpl authMusicianUsecase;
+    private final UpdateMusicianProfileUsecaseImpl updateMusicianProfileUsecase;
+
     private final JwtHandler jwtHandler;
 
     @Override
@@ -55,5 +55,16 @@ public class MusicianControllerImpl implements MusicianController {
                 .authToken(token)
                 .build()
         );
+    }
+
+    @Override
+    public ResponseEntity<MusicianOutputDTO> updateProfile(
+        Authentication authentication,
+        @RequestBody @Valid UpdateMusicianProfileDTO dto
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        MusicianOutputDTO output = this.updateMusicianProfileUsecase.exec(dto.toEntity(userId));
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
     }
 }
