@@ -13,7 +13,6 @@ import lombok.Builder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Builder
 @AllArgsConstructor
@@ -59,7 +58,7 @@ public class RegisterMusicianUsecaseImpl implements RegisterMusicianUsecase {
     }
 
     public void checkIfUserAlreadyExists(String musicianEmail, String musicianName) {
-        Optional<Musician> musician = this.musicianDataProvider.findByEmailOrName(musicianEmail, musicianName);
+        Musician musician = this.musicianDataProvider.findByEmailOrName(musicianEmail, musicianName).orElse(null);
 
         if (Objects.nonNull(musician)) {
             throw new ConflictException("Musician already exists");

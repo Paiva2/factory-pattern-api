@@ -24,8 +24,8 @@ public class Category {
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "category", nullable = false)
-    private MusicCategory category;
+    @Column(name = "CAT_NAME", nullable = false)
+    private MusicCategory name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     List<Music> musics;

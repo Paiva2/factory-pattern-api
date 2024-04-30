@@ -22,6 +22,9 @@ public class Album {
     @Column(name = "ALB_ID")
     private UUID id;
 
+    @Column(name = "ALB_NAME", nullable = false)
+    private String name;
+
     @Column(name = "ALB_DISABLED")
     private boolean disabled = false;
 

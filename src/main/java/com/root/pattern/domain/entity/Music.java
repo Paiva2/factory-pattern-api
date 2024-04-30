@@ -29,7 +29,7 @@ public class Music {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "MUS_ALBUM_ID", nullable = false)
+    @JoinColumn(name = "MUS_ALBUM_ID")
     private Album album;
 
     @ManyToOne(fetch = FetchType.EAGER)
