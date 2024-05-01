@@ -43,7 +43,7 @@
 - [ ] Update an album;
 - [ ] Get an album;
 - [ ] Get all own albums;
-- [ ] Register a new music;
+- [x] Register a new music;
 - [ ] Get an music;
 - [ ] Get all own musics;
 - [ ] Edit an music (name, category, duration, album);
