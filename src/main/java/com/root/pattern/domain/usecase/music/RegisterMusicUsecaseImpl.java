@@ -39,18 +39,16 @@ public class RegisterMusicUsecaseImpl implements RegisterMusicUsecase {
         Category category = this.validateIfCategoryExists(music.getCategory().getId());
         music.setCategory(category);
 
-        if (Objects.nonNull(music.getAlbum())) {
-            if (Objects.nonNull(music.getAlbum().getId())) {
-                Album album = this.validateIfAlbumExists(music.getAlbum().getId());
+        if (Objects.nonNull(music.getAlbum()) && Objects.nonNull(music.getAlbum().getId())) {
+            Album album = this.validateIfAlbumExists(music.getAlbum().getId());
 
-                if (Objects.nonNull(album.getDisabledAt())) {
-                    throw new ForbiddenException("Album disabled");
-                }
-
-                this.validateIfMusicianHasMusicWithSameNameOnAlbum(album.getId(), music.getName());
-
-                music.setAlbum(album);
+            if (Objects.nonNull(album.getDisabledAt())) {
+                throw new ForbiddenException("Album disabled");
             }
+
+            this.validateIfMusicianHasMusicWithSameNameOnAlbum(album.getId(), music.getName());
+
+            music.setAlbum(album);
         }
 
         Music saveMusic = this.musicDataProvider.register(music);
