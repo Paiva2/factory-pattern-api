@@ -1,9 +1,11 @@
 package com.root.pattern.adapter.controller.music;
 
+import com.root.pattern.adapter.dto.music.ListFilterMusicOutputDTO;
 import com.root.pattern.adapter.dto.music.NewMusicDTO;
 import com.root.pattern.adapter.dto.music.NewMusicOutputDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,4 +21,7 @@ public interface MusicController {
         Authentication authentication,
         NewMusicDTO newMusicDTO
     );
+
+    @GetMapping
+    ResponseEntity<ListFilterMusicOutputDTO> getMusicByName(String name, Integer page, Integer size);
 }

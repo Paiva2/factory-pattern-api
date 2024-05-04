@@ -4,6 +4,8 @@ import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -23,5 +25,10 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     @Override
     public Music register(Music music) {
         return this.musicRepository.save(music);
+    }
+
+    @Override
+    public Page<Music> findAllByNameLike(Pageable pageable, String name) {
+        return this.musicRepository.findAllByNameLike(pageable, name);
     }
 }
