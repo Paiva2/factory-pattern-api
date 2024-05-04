@@ -19,4 +19,14 @@ public class AlbumDataProviderImpl implements AlbumDataProvider {
     public Optional<Album> findById(UUID id) {
         return this.albumRepository.findById(id);
     }
+
+    @Override
+    public Album register(Album album) {
+        return this.albumRepository.save(album);
+    }
+
+    @Override
+    public Optional<Album> findByAlbumNameAndMusicianId(String albumName, Long musicianId) {
+        return this.albumRepository.findByAlbumNameAndMusicianId(albumName, musicianId);
+    }
 }

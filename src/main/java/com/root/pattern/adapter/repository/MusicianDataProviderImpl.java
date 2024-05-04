@@ -1,5 +1,6 @@
 package com.root.pattern.adapter.repository;
 
+import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
 import lombok.AllArgsConstructor;
@@ -36,4 +37,5 @@ public class MusicianDataProviderImpl implements MusicianDataProvider {
     public Optional<Musician> findByEmailOrName(String email, String name) {
         return this.musicianRepository.findByEmailOrName(email, name);
     }
+    
 }

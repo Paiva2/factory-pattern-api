@@ -1,5 +1,6 @@
 package com.root.pattern.domain.interfaces.repository;
 
+import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.entity.Musician;
 
 import java.util.Optional;

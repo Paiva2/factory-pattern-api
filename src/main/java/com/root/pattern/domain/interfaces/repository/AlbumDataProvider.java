@@ -7,4 +7,8 @@ import java.util.UUID;
 
 public interface AlbumDataProvider {
     Optional<Album> findById(UUID id);
+
+    Album register(Album album);
+
+    Optional<Album> findByAlbumNameAndMusicianId(String albumName, Long musicianId);
 }
