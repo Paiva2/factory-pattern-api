@@ -24,11 +24,9 @@
 
 - [ ] Create an playlist;
 - [ ] List all own playlists;
-- [ ] List all available albums;
-- [ ] List all musics on an album;
-- [ ] Get an specific music;
-- [ ] Fetch for an specific musician/album/music;
-- [ ] Fetch for an musician by name/album/music;
+- [x] List all musics on an album;
+- [ ] Fetch for an specific musician/~~album~~/music;
+- [x] Fetch all albums from a musician;
 - [ ] Insert musics on playlist;
 - [ ] Remove musics from playlist;
 - [ ] Insert musics on favorite;

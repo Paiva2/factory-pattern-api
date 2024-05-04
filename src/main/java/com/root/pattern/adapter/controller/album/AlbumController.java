@@ -1,5 +1,6 @@
 package com.root.pattern.adapter.controller.album;
 
+import com.root.pattern.adapter.dto.album.FilterAlbumOutputDTO;
 import com.root.pattern.adapter.dto.album.ListAllAlbumsOutputDTO;
 import com.root.pattern.adapter.dto.album.NewAlbumInputDTO;
 import com.root.pattern.adapter.dto.album.NewAlbumOutputDTO;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/musician/album")
@@ -24,4 +27,6 @@ public interface AlbumController {
         String albumName
     );
 
+    @GetMapping("/{albumId}")
+    ResponseEntity<FilterAlbumOutputDTO> getMusicianAlbum(UUID albumId);
 }
