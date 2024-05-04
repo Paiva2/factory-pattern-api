@@ -39,6 +39,6 @@ public class GlobalExceptionConfig {
             put("error", exception.getMessage());
         }};
 
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorMapping);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorMapping);
     }
 }

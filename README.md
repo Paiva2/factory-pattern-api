@@ -38,11 +38,11 @@
 
 #### Musician context
 
-- [ ] Create an album;
+- [x] Create an album;
 - [ ] Delete an album;
 - [ ] Update an album;
-- [ ] Get an album;
-- [ ] Get all own albums;
+- [x] Get an album;
+- [x] Get all own albums;
 - [x] Register a new music;
 - [ ] Get an music;
 - [ ] Get all own musics;

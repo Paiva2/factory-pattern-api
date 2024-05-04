@@ -16,6 +16,7 @@ import lombok.Builder;
 import java.util.Objects;
 import java.util.Optional;
 
+// TODO: UNIT TESTS
 @AllArgsConstructor
 @Builder
 public class CreateAlbumUsecaseImpl implements CreateAlbumUsecase {
@@ -50,7 +51,7 @@ public class CreateAlbumUsecaseImpl implements CreateAlbumUsecase {
         if (Objects.isNull(newAlbum)) {
             throw new BadRequestException("Album can't be empty");
         }
-        
+
         if (Objects.isNull(newAlbum.getName())) {
             throw new BadRequestException("Album name can't be empty");
         }
