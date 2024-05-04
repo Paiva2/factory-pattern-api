@@ -10,9 +10,11 @@ import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,16 +23,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Component
 @AllArgsConstructor
 public class RequestFilterChain extends OncePerRequestFilter {
+    private static final List<AntPathRequestMatcher> UNFILTERABLE_ROUTES;
+
     private final UserDataProviderImpl userDataProvider;
     private final MusicianDataProviderImpl musicianDataProvider;
     private final JwtHandler jwtHandler;
+
+    static {
+        UNFILTERABLE_ROUTES = new ArrayList<AntPathRequestMatcher>() {{
+            add(new AntPathRequestMatcher("/api/v1/musician/album/list/*", HttpMethod.GET.toString()));
+            add(new AntPathRequestMatcher("/api/v1/musician/album/*", HttpMethod.GET.toString()));
+
+            add(new AntPathRequestMatcher("/api/v1/user/register", HttpMethod.POST.toString()));
+            add(new AntPathRequestMatcher("/api/v1/musician/register", HttpMethod.POST.toString()));
+            add(new AntPathRequestMatcher("/api/v1/user/login", HttpMethod.POST.toString()));
+            add(new AntPathRequestMatcher("/api/v1/musician/login", HttpMethod.POST.toString()));
+        }};
+    }
 
     @Override
     protected void doFilterInternal(
@@ -60,6 +76,7 @@ public class RequestFilterChain extends OncePerRequestFilter {
             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         filterChain.doFilter(request, response);
     }
 
@@ -115,14 +132,7 @@ public class RequestFilterChain extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        List<String> nonFilterableRoutes = Arrays.asList(
-            "/api/v1/user/register",
-            "/api/v1/musician/register",
-            "/api/v1/user/login",
-            "/api/v1/musician/login"
-        );
-
-        return nonFilterableRoutes.contains(request.getRequestURI());
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return UNFILTERABLE_ROUTES.stream().anyMatch(matcher -> matcher.matches(request));
     }
 }
