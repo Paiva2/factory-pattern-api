@@ -40,6 +40,7 @@ public class RequestFilterChain extends OncePerRequestFilter {
         UNFILTERABLE_ROUTES = new ArrayList<AntPathRequestMatcher>() {{
             add(new AntPathRequestMatcher("/api/v1/musician/album/list/*", HttpMethod.GET.toString()));
             add(new AntPathRequestMatcher("/api/v1/musician/album/*", HttpMethod.GET.toString()));
+            add(new AntPathRequestMatcher("/api/v1/musician", HttpMethod.GET.toString()));
 
             add(new AntPathRequestMatcher("/api/v1/user/register", HttpMethod.POST.toString()));
             add(new AntPathRequestMatcher("/api/v1/musician/register", HttpMethod.POST.toString()));

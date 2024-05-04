@@ -19,4 +19,7 @@ public interface MusicianController {
 
     @PatchMapping("/profile")
     ResponseEntity<MusicianOutputDTO> updateProfile(Authentication authentication, UpdateMusicianProfileDTO dto);
+
+    @GetMapping
+    ResponseEntity<FilterMusicianOutputDTO> getMusician(Long id, String name);
 }
