@@ -13,4 +13,6 @@ public interface MusicDataProvider {
     Music register(Music music);
 
     Page<Music> findAllByNameLike(Pageable pageable, String name);
+
+    Optional<Music> findById(UUID id);
 }

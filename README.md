@@ -25,7 +25,7 @@
 - [ ] Create an playlist;
 - [ ] List all own playlists;
 - [x] List all musics on an album;
-- [ ] Fetch for an specific ~~musician~~/~~album~~/music;
+- [x] Fetch for an specific musician/album/music;
 - [x] Fetch all albums from a musician;
 - [ ] Fetch all albums by name;
 - [x] Fetch all musics by name;
@@ -44,7 +44,7 @@
 - [x] Get an album;
 - [x] Get all own albums;
 - [x] Register a new music;
-- [ ] Get an music;
+- [x] Get an music;
 - [ ] Get all own musics;
 - [ ] Edit an music (name, category, duration, album);
 - [ ] Remove an music;

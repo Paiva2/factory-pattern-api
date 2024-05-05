@@ -1,5 +1,6 @@
 package com.root.pattern.adapter.controller.music;
 
+import com.root.pattern.adapter.dto.music.FilterMusicOutputDTO;
 import com.root.pattern.adapter.dto.music.ListFilterMusicOutputDTO;
 import com.root.pattern.adapter.dto.music.NewMusicDTO;
 import com.root.pattern.adapter.dto.music.NewMusicOutputDTO;
@@ -24,4 +25,7 @@ public interface MusicController {
 
     @GetMapping
     ResponseEntity<ListFilterMusicOutputDTO> getMusicByName(String name, Integer page, Integer size);
+
+    @GetMapping("/{musicId}")
+    ResponseEntity<FilterMusicOutputDTO> getMusic(UUID id);
 }

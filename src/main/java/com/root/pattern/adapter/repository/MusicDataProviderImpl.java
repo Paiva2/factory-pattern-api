@@ -31,4 +31,9 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public Page<Music> findAllByNameLike(Pageable pageable, String name) {
         return this.musicRepository.findAllByNameLike(pageable, name);
     }
+
+    @Override
+    public Optional<Music> findById(UUID id) {
+        return this.musicRepository.findById(id);
+    }
 }
