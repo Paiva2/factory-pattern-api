@@ -13,7 +13,6 @@ import lombok.Builder;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-// TODO: TESTS
 @Builder
 @AllArgsConstructor
 public class FilterMusicianUsecaseImpl implements FilterMusicianUsecase {
