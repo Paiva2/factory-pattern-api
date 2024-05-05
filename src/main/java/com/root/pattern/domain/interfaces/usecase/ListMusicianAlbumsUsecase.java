@@ -12,5 +12,5 @@ public interface ListMusicianAlbumsUsecase {
 
     Musician validateIfMusicianExists(Long musicianId);
 
-    ListAllAlbumsOutputDTO mountOutput(Page<Album> items);
+    ListAllAlbumsOutputDTO mountOutput(Page<Album> items, int perPage);
 }

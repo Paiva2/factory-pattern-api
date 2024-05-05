@@ -20,7 +20,6 @@ import org.springframework.data.domain.Sort;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//TODO:TESTS
 @AllArgsConstructor
 @Builder
 public class ListMusicianAlbumsUsecaseImpl implements ListMusicianAlbumsUsecase {
@@ -57,7 +56,7 @@ public class ListMusicianAlbumsUsecaseImpl implements ListMusicianAlbumsUsecase 
             albumsList = this.albumDataProvider.findAllByMusicianIdAndAlbumName(pageable, musician.getId(), albumName);
         }
 
-        return this.mountOutput(albumsList);
+        return this.mountOutput(albumsList, perPage);
     }
 
     @Override
@@ -73,10 +72,10 @@ public class ListMusicianAlbumsUsecaseImpl implements ListMusicianAlbumsUsecase 
     }
 
     @Override
-    public ListAllAlbumsOutputDTO mountOutput(Page<Album> items) {
+    public ListAllAlbumsOutputDTO mountOutput(Page<Album> items, int perPage) {
         return ListAllAlbumsOutputDTO.builder()
             .page(items.getNumber() + 1)
-            .perPage(items.getSize())
+            .perPage(perPage)
             .totalAlbuns(items.getTotalElements())
             .albuns(items.stream().map(album -> AlbumOutputDTO.builder()
                 .id(album.getId())
