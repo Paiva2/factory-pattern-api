@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-//TODO: tests
 @AllArgsConstructor
 @Builder
 public class FilterAlbumUsecaseImpl implements FilterAlbumUsecase {
