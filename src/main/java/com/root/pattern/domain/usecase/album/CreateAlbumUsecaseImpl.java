@@ -16,7 +16,6 @@ import lombok.Builder;
 import java.util.Objects;
 import java.util.Optional;
 
-// TODO: UNIT TESTS
 @AllArgsConstructor
 @Builder
 public class CreateAlbumUsecaseImpl implements CreateAlbumUsecase {
