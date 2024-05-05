@@ -56,7 +56,7 @@ class RegisterMusicianUsecaseImplTest {
 
         Musician createdMusicianMock = this.musicianBuilder();
 
-        Mockito.when(this.musicianDataProvider.findByEmailOrName(Mockito.any(), Mockito.any())).thenReturn(null);
+        Mockito.when(this.musicianDataProvider.findByEmailOrName(Mockito.any(), Mockito.any())).thenReturn(Optional.empty());
         Mockito.when(this.passwordEncoder.encode(Mockito.any())).thenReturn("hashed_password");
         Mockito.when(this.mailValidator.validate(Mockito.anyString())).thenReturn(true);
 
@@ -163,7 +163,7 @@ class RegisterMusicianUsecaseImplTest {
     @Test
     void shouldReturnSutOutputIfNothingGoesWrong() {
         Musician newMusician = this.musicianBuilder();
-        
+
         MusicianOutputDTO outputSut = this.sut.exec(newMusician);
 
         Assertions.assertAll("Sut output assertions",

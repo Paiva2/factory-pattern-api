@@ -11,5 +11,5 @@ public interface FilterMusicsNameUsecase {
 
     Page<Music> getAllMusicsWithName(String name, int page, int perPage);
 
-    ListFilterMusicOutputDTO mountOutput(Page<Music> musicList);
+    ListFilterMusicOutputDTO mountOutput(Page<Music> musicList, int perPage);
 }
