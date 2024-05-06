@@ -4,10 +4,12 @@ import com.root.pattern.domain.entity.Music;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,4 +27,8 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "WHERE (LOWER(m.name) LIKE CONCAT('%', LOWER(:musicName), '%') " +
         "AND m.disabled IS NOT TRUE)")
     Page<Music> findAllByNameLike(Pageable pageable, @Param("musicName") String musicName);
+
+    @Modifying
+    @Query("UPDATE Music m SET m.disabled = true, m.disabledAt = now() WHERE m.id IN (:ids)")
+    void disableAll(@Param("ids") List<UUID> ids);
 }

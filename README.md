@@ -39,7 +39,7 @@
 #### Musician context
 
 - [x] Create an album;
-- [ ] Delete an album;
+- [x] Disable an album;
 - [ ] Update an album;
 - [x] Get an album;
 - [x] Get all own albums;
@@ -47,5 +47,5 @@
 - [x] Get an music;
 - [ ] Get all own musics;
 - [ ] Edit an music (name, category, duration, album);
-- [ ] Remove an music;
+- [ ] Disable an music;
 - [ ] Remove music from an album (may be a single).

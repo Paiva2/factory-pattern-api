@@ -1,15 +1,9 @@
 package com.root.pattern.adapter.controller.album;
 
-import com.root.pattern.adapter.dto.album.FilterAlbumOutputDTO;
-import com.root.pattern.adapter.dto.album.ListAllAlbumsOutputDTO;
-import com.root.pattern.adapter.dto.album.NewAlbumInputDTO;
-import com.root.pattern.adapter.dto.album.NewAlbumOutputDTO;
+import com.root.pattern.adapter.dto.album.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -32,4 +26,7 @@ public interface AlbumController {
 
     @GetMapping("/all")
     ResponseEntity<ListAllAlbumsOutputDTO> getAllAlbumsByName(Integer page, Integer perPage, String name);
+
+    @DeleteMapping("/{albumId}")
+    ResponseEntity<DisableAlbumOutputDTO> disable(Authentication authentication, UUID albumId);
 }

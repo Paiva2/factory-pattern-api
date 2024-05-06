@@ -19,4 +19,6 @@ public interface AlbumDataProvider {
     Page<Album> findAllByMusicianIdAndAlbumName(Pageable pageable, Long musicianId, String albumName);
 
     Page<Album> findAllByNameLike(Pageable pageable, String name);
+
+    Album disable(Album album);
 }

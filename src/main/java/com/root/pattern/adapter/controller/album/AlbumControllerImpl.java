@@ -1,10 +1,8 @@
 package com.root.pattern.adapter.controller.album;
 
-import com.root.pattern.adapter.dto.album.FilterAlbumOutputDTO;
-import com.root.pattern.adapter.dto.album.ListAllAlbumsOutputDTO;
-import com.root.pattern.adapter.dto.album.NewAlbumInputDTO;
-import com.root.pattern.adapter.dto.album.NewAlbumOutputDTO;
+import com.root.pattern.adapter.dto.album.*;
 import com.root.pattern.domain.interfaces.CreateAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.DisableAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.FilterAlbumsNameUsecase;
 import com.root.pattern.domain.interfaces.usecase.ListMusicianAlbumsUsecase;
@@ -27,6 +25,7 @@ public class AlbumControllerImpl implements AlbumController {
     private final ListMusicianAlbumsUsecase listMusicianAlbumsUsecase;
     private final FilterAlbumUsecase filterAlbumUsecase;
     private final FilterAlbumsNameUsecase filterAlbumsNameUsecase;
+    private final DisableAlbumUsecase disableAlbumUsecase;
 
     @Override
     public ResponseEntity<NewAlbumOutputDTO> create(
@@ -66,6 +65,18 @@ public class AlbumControllerImpl implements AlbumController {
         @RequestParam(value = "name") String name
     ) {
         ListAllAlbumsOutputDTO output = this.filterAlbumsNameUsecase.exec(name, page, perPage);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<DisableAlbumOutputDTO> disable(
+        Authentication authentication,
+        @PathVariable("albumId") UUID albumId
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+
+        DisableAlbumOutputDTO output = this.disableAlbumUsecase.exec(musicianId, albumId);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

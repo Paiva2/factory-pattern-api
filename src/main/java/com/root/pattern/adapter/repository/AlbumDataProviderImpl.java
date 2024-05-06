@@ -46,4 +46,9 @@ public class AlbumDataProviderImpl implements AlbumDataProvider {
     public Page<Album> findAllByNameLike(Pageable pageable, String name) {
         return this.albumRepository.findAllByNameLike(pageable, name);
     }
+
+    @Override
+    public Album disable(Album album) {
+        return this.albumRepository.save(album);
+    }
 }
