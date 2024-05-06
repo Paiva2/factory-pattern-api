@@ -42,4 +42,15 @@ public interface AlbumRepository extends JpaRepository<Album, UUID> {
             "AND alb.disabled IS NOT TRUE")
     Page<Album> findAllByMusicianIdAndAlbumName(Pageable pageable, @Param("musicianId") Long musicianId, @Param("albumName") String albumName);
 
+    @Query(value = "SELECT alb FROM Album alb " +
+        "JOIN FETCH alb.musician ms " +
+        "LEFT JOIN FETCH alb.music msc " +
+        "WHERE LOWER(alb.name) LIKE CONCAT('%', LOWER(:albumName), '%') " +
+        "AND alb.disabled IS NOT TRUE",
+        countQuery = "SELECT count(alb) FROM Album alb " +
+            "JOIN alb.musician ms " +
+            "LEFT JOIN alb.music msc " +
+            "WHERE LOWER(alb.name) LIKE CONCAT('%', LOWER(:albumName), '%') " +
+            "AND alb.disabled IS NOT TRUE")
+    Page<Album> findAllByNameLike(Pageable pageable, @Param("albumName") String name);
 }

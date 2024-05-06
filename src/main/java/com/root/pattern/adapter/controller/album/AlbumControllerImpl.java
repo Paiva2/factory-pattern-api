@@ -6,6 +6,7 @@ import com.root.pattern.adapter.dto.album.NewAlbumInputDTO;
 import com.root.pattern.adapter.dto.album.NewAlbumOutputDTO;
 import com.root.pattern.domain.interfaces.CreateAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.FilterAlbumsNameUsecase;
 import com.root.pattern.domain.interfaces.usecase.ListMusicianAlbumsUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class AlbumControllerImpl implements AlbumController {
     private final CreateAlbumUsecase createAlbumUsecase;
     private final ListMusicianAlbumsUsecase listMusicianAlbumsUsecase;
     private final FilterAlbumUsecase filterAlbumUsecase;
+    private final FilterAlbumsNameUsecase filterAlbumsNameUsecase;
 
     @Override
     public ResponseEntity<NewAlbumOutputDTO> create(
@@ -53,6 +55,17 @@ public class AlbumControllerImpl implements AlbumController {
         @PathVariable("albumId") UUID albumId
     ) {
         FilterAlbumOutputDTO output = this.filterAlbumUsecase.exec(albumId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<ListAllAlbumsOutputDTO> getAllAlbumsByName(
+        @RequestParam(value = "page", defaultValue = "1", required = false) Integer page,
+        @RequestParam(value = "size", defaultValue = "5", required = false) Integer perPage,
+        @RequestParam(value = "name") String name
+    ) {
+        ListAllAlbumsOutputDTO output = this.filterAlbumsNameUsecase.exec(name, page, perPage);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

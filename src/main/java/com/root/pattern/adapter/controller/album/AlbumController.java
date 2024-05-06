@@ -29,4 +29,7 @@ public interface AlbumController {
 
     @GetMapping("/{albumId}")
     ResponseEntity<FilterAlbumOutputDTO> getMusicianAlbum(UUID albumId);
+
+    @GetMapping("/all")
+    ResponseEntity<ListAllAlbumsOutputDTO> getAllAlbumsByName(Integer page, Integer perPage, String name);
 }

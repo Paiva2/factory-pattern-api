@@ -41,4 +41,9 @@ public class AlbumDataProviderImpl implements AlbumDataProvider {
     public Page<Album> findAllByMusicianIdAndAlbumName(Pageable pageable, Long musicianId, String albumName) {
         return this.albumRepository.findAllByMusicianIdAndAlbumName(pageable, musicianId, albumName);
     }
+
+    @Override
+    public Page<Album> findAllByNameLike(Pageable pageable, String name) {
+        return this.albumRepository.findAllByNameLike(pageable, name);
+    }
 }
