@@ -27,7 +27,7 @@
 - [x] List all musics on an album;
 - [x] Fetch for an specific musician/album/music;
 - [x] Fetch all albums from a musician;
-- [ ] Fetch all albums by name;
+- [x] Fetch all albums by name;
 - [x] Fetch all musics by name;
 - [ ] Insert musics on playlist;
 - [ ] Remove musics from playlist;
