@@ -14,5 +14,7 @@ public interface FilterMusicianUsecase {
 
     Musician findMusicianName(String name);
 
+    void checkIfMusicianIsDisabled(Musician musician);
+
     FilterMusicianOutputDTO mountOutput(Musician musician);
 }

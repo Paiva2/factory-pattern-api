@@ -13,7 +13,11 @@ import java.util.UUID;
 
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, UUID> {
-    @Query("SELECT alb FROM Album alb JOIN FETCH alb.musician ms WHERE alb.name = :albumName AND ms.id = :musicianId")
+    @Query("SELECT alb FROM Album alb " +
+        "JOIN FETCH alb.musician ms " +
+        "WHERE alb.name = :albumName " +
+        "AND ms.id = :musicianId " +
+        "AND alb.disabled IS NOT TRUE")
     Optional<Album> findByAlbumNameAndMusicianId(@Param("albumName") String albumName, @Param("musicianId") Long musicianId);
 
     @Query(value = "SELECT alb FROM Album alb " +

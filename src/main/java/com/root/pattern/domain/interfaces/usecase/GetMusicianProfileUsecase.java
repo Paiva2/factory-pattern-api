@@ -10,5 +10,7 @@ public interface GetMusicianProfileUsecase {
 
     Musician checkIfMusicianExists(Long id);
 
+    void checkIfMusicianIsDisabled(Musician musician);
+
     MusicianOutputDTO mountOutput(Musician musician);
 }

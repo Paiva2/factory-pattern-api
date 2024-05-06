@@ -3,6 +3,7 @@ package com.root.pattern.domain.usecase.musician;
 import com.root.pattern.adapter.dto.album.AlbumOutputDTO;
 import com.root.pattern.adapter.dto.musician.FilterMusicianOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
+import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
@@ -12,6 +13,8 @@ import lombok.Builder;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+//todo: add checkIfMusicianIsDisabled tests
 
 @Builder
 @AllArgsConstructor
@@ -23,6 +26,8 @@ public class FilterMusicianUsecaseImpl implements FilterMusicianUsecase {
         this.validateInputs(musicianId, musicianName);
 
         Musician musician = this.checkIfMusicianExists(musicianId, musicianName);
+
+        this.checkIfMusicianIsDisabled(musician);
 
         return this.mountOutput(musician);
     }
@@ -57,6 +62,13 @@ public class FilterMusicianUsecaseImpl implements FilterMusicianUsecase {
     @Override
     public Musician findMusicianName(String name) {
         return this.musicianDataProvider.findByName(name).orElseThrow(() -> new NotFoundException("Musician"));
+    }
+
+    @Override
+    public void checkIfMusicianIsDisabled(Musician musician) {
+        if (musician.isDisabled()) {
+            throw new ForbiddenException("Musician is disabled");
+        }
     }
 
     @Override

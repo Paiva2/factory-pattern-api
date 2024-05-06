@@ -13,11 +13,16 @@ import java.util.UUID;
 
 @Repository
 public interface MusicRepository extends JpaRepository<Music, UUID> {
-    @Query("SELECT m FROM Music m JOIN FETCH m.album ma WHERE m.name = :musicName AND ma.id = :albumId")
+    @Query("SELECT m FROM Music m " +
+        "JOIN FETCH m.album ma " +
+        "WHERE m.name = :musicName " +
+        "AND ma.id = :albumId " +
+        "AND m.disabled IS NOT TRUE")
     Optional<Music> findByAlbumAndName(@Param("albumId") UUID albumId, @Param("musicName") String musicName);
 
     @Query(value = "SELECT m FROM Music m " +
         "LEFT JOIN m.album ma " +
-        "WHERE (LOWER(m.name) LIKE CONCAT('%', LOWER(:musicName), '%') AND m.disabled IS NOT TRUE)")
+        "WHERE (LOWER(m.name) LIKE CONCAT('%', LOWER(:musicName), '%') " +
+        "AND m.disabled IS NOT TRUE)")
     Page<Music> findAllByNameLike(Pageable pageable, @Param("musicName") String musicName);
 }
