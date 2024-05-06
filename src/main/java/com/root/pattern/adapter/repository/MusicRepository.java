@@ -31,4 +31,11 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
     @Modifying
     @Query("UPDATE Music m SET m.disabled = true, m.disabledAt = now() WHERE m.id IN (:ids)")
     void disableAll(@Param("ids") List<UUID> ids);
+
+    @Query(value = "SELECT m FROM Music m " +
+        "LEFT JOIN m.album ma " +
+        "INNER JOIN m.musician msc " +
+        "WHERE msc = :musicianId " +
+        "AND m.disabled IS NOT TRUE")
+    Page<Music> findAllByMusician(Pageable pageable, @Param("musicianId") Long musicianId);
 }

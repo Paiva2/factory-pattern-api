@@ -29,4 +29,11 @@ public interface AlbumController {
 
     @DeleteMapping("/{albumId}")
     ResponseEntity<DisableAlbumOutputDTO> disable(Authentication authentication, UUID albumId);
+
+    @PatchMapping("/{albumId}")
+    ResponseEntity<AlbumOutputDTO> update(
+        Authentication authentication,
+        UUID albumId,
+        UpdateAlbumInputDTO dto
+    );
 }

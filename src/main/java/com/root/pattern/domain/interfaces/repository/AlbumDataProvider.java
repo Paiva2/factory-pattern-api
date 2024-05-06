@@ -21,4 +21,6 @@ public interface AlbumDataProvider {
     Page<Album> findAllByNameLike(Pageable pageable, String name);
 
     Album disable(Album album);
+
+    Album update(Album album);
 }

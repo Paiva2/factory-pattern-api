@@ -28,4 +28,11 @@ public interface MusicController {
 
     @GetMapping("/{musicId}")
     ResponseEntity<FilterMusicOutputDTO> getMusic(UUID id);
+
+    @GetMapping("/all/{musicianId}")
+    ResponseEntity<ListFilterMusicOutputDTO> getMusicianMusics(
+        Long id,
+        Integer page,
+        Integer perPage
+    );
 }

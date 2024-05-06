@@ -42,4 +42,9 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public void disableAllWithId(List<UUID> ids) {
         this.musicRepository.disableAll(ids);
     }
+
+    @Override
+    public Page<Music> findAllByMusician(Pageable pageable, Long musicianId) {
+        return this.musicRepository.findAllByMusician(pageable, musicianId);
+    }
 }

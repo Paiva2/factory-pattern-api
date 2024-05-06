@@ -51,4 +51,9 @@ public class AlbumDataProviderImpl implements AlbumDataProvider {
     public Album disable(Album album) {
         return this.albumRepository.save(album);
     }
+
+    @Override
+    public Album update(Album album) {
+        return this.albumRepository.save(album);
+    }
 }

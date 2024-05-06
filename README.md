@@ -40,7 +40,7 @@
 
 - [x] Create an album;
 - [x] Disable an album;
-- [ ] Update an album;
+- [x] Update an album;
 - [x] Get an album;
 - [x] Get all own albums;
 - [x] Register a new music;

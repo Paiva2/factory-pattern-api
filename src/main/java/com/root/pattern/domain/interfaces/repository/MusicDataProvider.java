@@ -18,4 +18,6 @@ public interface MusicDataProvider {
     Optional<Music> findById(UUID id);
 
     void disableAllWithId(List<UUID> ids);
+
+    Page<Music> findAllByMusician(Pageable pageable, Long musicianId);
 }

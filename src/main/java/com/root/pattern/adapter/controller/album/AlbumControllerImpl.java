@@ -2,6 +2,7 @@ package com.root.pattern.adapter.controller.album;
 
 import com.root.pattern.adapter.dto.album.*;
 import com.root.pattern.domain.interfaces.CreateAlbumUsecase;
+import com.root.pattern.domain.interfaces.UpdateAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.DisableAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
 import com.root.pattern.domain.interfaces.usecase.FilterAlbumsNameUsecase;
@@ -26,6 +27,7 @@ public class AlbumControllerImpl implements AlbumController {
     private final FilterAlbumUsecase filterAlbumUsecase;
     private final FilterAlbumsNameUsecase filterAlbumsNameUsecase;
     private final DisableAlbumUsecase disableAlbumUsecase;
+    private final UpdateAlbumUsecase updateAlbumUsecase;
 
     @Override
     public ResponseEntity<NewAlbumOutputDTO> create(
@@ -77,6 +79,19 @@ public class AlbumControllerImpl implements AlbumController {
         Long musicianId = Long.valueOf(authentication.getName());
 
         DisableAlbumOutputDTO output = this.disableAlbumUsecase.exec(musicianId, albumId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<AlbumOutputDTO> update(
+        Authentication authentication,
+        @PathVariable("albumId") UUID albumId,
+        @RequestBody @Valid UpdateAlbumInputDTO dto
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        
+        AlbumOutputDTO output = this.updateAlbumUsecase.exec(musicianId, dto.toEntity(albumId));
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }
