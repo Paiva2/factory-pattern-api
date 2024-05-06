@@ -43,7 +43,7 @@ public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsec
 
     @Override
     public void validateInputs(Long musicianId) {
-        if (Objects.nonNull(musicianId)) {
+        if (Objects.isNull(musicianId)) {
             throw new BadRequestException("Musician id can't be empty");
         }
     }
@@ -62,7 +62,7 @@ public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsec
 
     @Override
     public Page<Music> getAllMusicsFromMusician(Long musicianId, Integer page, Integer perPage) {
-        Pageable pageable = PageRequest.of(page - 1, perPage, Sort.Direction.DESC);
+        Pageable pageable = PageRequest.of(page - 1, perPage, Sort.Direction.DESC, "createdAt");
 
         return this.musicDataProvider.findAllByMusician(pageable, musicianId);
     }
@@ -93,12 +93,14 @@ public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsec
                         .createdAt(music.getMusician().getCreatedAt())
                         .build()
                     )
-                    .album(AlbumOutputDTO.builder()
-                        .id(music.getAlbum().getId())
-                        .name(music.getAlbum().getName())
-                        .createdAt(music.getAlbum().getCreatedAt())
-                        .totalMusics(music.getAlbum().getMusic().size())
-                        .build()
+                    .album(Objects.nonNull(music.getAlbum()) ?
+                        AlbumOutputDTO.builder()
+                            .id(music.getAlbum().getId())
+                            .name(music.getAlbum().getName())
+                            .createdAt(music.getAlbum().getCreatedAt())
+                            .totalMusics(music.getAlbum().getMusic().size())
+                            .build()
+                        : null
                     )
                     .build()
             ).collect(Collectors.toList()))

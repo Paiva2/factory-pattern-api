@@ -35,7 +35,7 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
     @Query(value = "SELECT m FROM Music m " +
         "LEFT JOIN m.album ma " +
         "INNER JOIN m.musician msc " +
-        "WHERE msc = :musicianId " +
+        "WHERE msc.id = :musicianId " +
         "AND m.disabled IS NOT TRUE")
     Page<Music> findAllByMusician(Pageable pageable, @Param("musicianId") Long musicianId);
 }
