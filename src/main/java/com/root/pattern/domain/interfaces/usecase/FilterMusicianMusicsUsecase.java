@@ -16,5 +16,5 @@ public interface FilterMusicianMusicsUsecase {
 
     Page<Music> getAllMusicsFromMusician(Long musicianId, Integer page, Integer perPage);
 
-    ListFilterMusicOutputDTO mountOutput(Page<Music> musics);
+    ListFilterMusicOutputDTO mountOutput(Page<Music> musics, Integer perPage);
 }

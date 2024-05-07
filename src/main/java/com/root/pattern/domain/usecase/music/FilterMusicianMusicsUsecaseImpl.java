@@ -23,7 +23,6 @@ import org.springframework.data.domain.Sort;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//todo: tests
 @Builder
 @AllArgsConstructor
 public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsecase {
@@ -36,9 +35,19 @@ public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsec
         Musician musician = this.checkIfMusicianExists(musicianId);
         this.checkIfMusicianIsNotDisabled(musician);
 
+        if (page < 1) {
+            page = 1;
+        }
+
+        if (perPage < 5) {
+            perPage = 5;
+        } else if (perPage > 50) {
+            perPage = 50;
+        }
+
         Page<Music> musics = this.getAllMusicsFromMusician(musician.getId(), page, perPage);
 
-        return this.mountOutput(musics);
+        return this.mountOutput(musics, perPage);
     }
 
     @Override
@@ -68,10 +77,10 @@ public class FilterMusicianMusicsUsecaseImpl implements FilterMusicianMusicsUsec
     }
 
     @Override
-    public ListFilterMusicOutputDTO mountOutput(Page<Music> musics) {
+    public ListFilterMusicOutputDTO mountOutput(Page<Music> musics, Integer perPage) {
         return ListFilterMusicOutputDTO.builder()
             .page(musics.getNumber() + 1)
-            .perPage(musics.getSize())
+            .perPage(perPage)
             .totalItems(musics.getTotalElements())
             .musics(musics.stream().map(music ->
                 FilterMusicOutputDTO.builder()

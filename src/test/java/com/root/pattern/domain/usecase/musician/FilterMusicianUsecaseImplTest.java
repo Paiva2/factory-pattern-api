@@ -2,6 +2,7 @@ package com.root.pattern.domain.usecase.musician;
 
 import com.root.pattern.adapter.dto.musician.FilterMusicianOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
+import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.entity.Music;
@@ -117,6 +118,21 @@ class FilterMusicianUsecaseImplTest {
         });
 
         Assertions.assertEquals("Musician not found", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowErrorIfMusicianIsDisabled() {
+        Musician musician = this.musicianBuilder(null);
+        musician.setDisabled(true);
+
+        Mockito.when(this.musicianDataProvider.findById(Mockito.any()))
+            .thenReturn(Optional.of(musician));
+
+        ForbiddenException exception = Assertions.assertThrows(ForbiddenException.class, () -> {
+            this.sut.exec(1L, null);
+        });
+
+        Assertions.assertEquals("Musician is disabled", exception.getMessage());
     }
 
     @Test

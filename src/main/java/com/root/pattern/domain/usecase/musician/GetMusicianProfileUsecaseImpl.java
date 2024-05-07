@@ -12,7 +12,6 @@ import lombok.Builder;
 
 import java.util.Objects;
 
-//todo: add checkIfMusicianIsDisabled tests
 @AllArgsConstructor
 @Builder
 public class GetMusicianProfileUsecaseImpl implements GetMusicianProfileUsecase {

@@ -14,8 +14,6 @@ import lombok.Builder;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//todo: add checkIfMusicianIsDisabled tests
-
 @Builder
 @AllArgsConstructor
 public class FilterMusicianUsecaseImpl implements FilterMusicianUsecase {
