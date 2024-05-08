@@ -1,15 +1,9 @@
 package com.root.pattern.adapter.controller.music;
 
-import com.root.pattern.adapter.dto.music.FilterMusicOutputDTO;
-import com.root.pattern.adapter.dto.music.ListFilterMusicOutputDTO;
-import com.root.pattern.adapter.dto.music.NewMusicDTO;
-import com.root.pattern.adapter.dto.music.NewMusicOutputDTO;
+import com.root.pattern.adapter.dto.music.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -43,5 +37,11 @@ public interface MusicController {
         String name,
         String album,
         Authentication authentication
+    );
+
+    @DeleteMapping("/{musicId}")
+    ResponseEntity<MusicOutputDTO> disable(
+        Authentication authentication,
+        UUID musicId
     );
 }

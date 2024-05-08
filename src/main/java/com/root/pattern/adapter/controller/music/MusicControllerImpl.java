@@ -1,9 +1,6 @@
 package com.root.pattern.adapter.controller.music;
 
-import com.root.pattern.adapter.dto.music.FilterMusicOutputDTO;
-import com.root.pattern.adapter.dto.music.ListFilterMusicOutputDTO;
-import com.root.pattern.adapter.dto.music.NewMusicDTO;
-import com.root.pattern.adapter.dto.music.NewMusicOutputDTO;
+import com.root.pattern.adapter.dto.music.*;
 import com.root.pattern.domain.interfaces.usecase.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +22,7 @@ public class MusicControllerImpl implements MusicController {
     private final FilterOneMusicUsecase filterOneMusicUsecase;
     private final FilterMusicianMusicsUsecase filterMusicianMusicsUsecase;
     private final GetAllOwnMusicsUsecase getAllOwnMusicsUsecase;
+    private final DisableMusicUsecase disableMusicUsecase;
 
     @Override
     public ResponseEntity<NewMusicOutputDTO> register(
@@ -77,6 +75,17 @@ public class MusicControllerImpl implements MusicController {
     ) {
         Long musicianId = Long.valueOf(authentication.getName());
         ListFilterMusicOutputDTO output = this.getAllOwnMusicsUsecase.exec(musicianId, page, perPage, name, album);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<MusicOutputDTO> disable(
+        Authentication authentication,
+        @PathVariable("musicId") UUID musicId
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        MusicOutputDTO output = this.disableMusicUsecase.exec(musicianId, musicId);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }
