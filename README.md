@@ -45,7 +45,7 @@
 - [x] Get all own albums;
 - [x] Register a new music;
 - [x] Get an music;
-- [ ] Get all own musics;
+- [x] Get all own musics;
 - [ ] Edit an music (name, category, duration, album);
 - [ ] Disable an music;
 - [ ] Remove music from an album (may be a single).
