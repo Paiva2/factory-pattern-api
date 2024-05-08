@@ -35,4 +35,13 @@ public interface MusicController {
         Integer page,
         Integer perPage
     );
+
+    @GetMapping("/own/list")
+    ResponseEntity<ListFilterMusicOutputDTO> getOwnMusicianMusics(
+        Integer page,
+        Integer perPage,
+        String name,
+        String album,
+        Authentication authentication
+    );
 }

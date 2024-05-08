@@ -47,4 +47,14 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public Page<Music> findAllByMusician(Pageable pageable, Long musicianId) {
         return this.musicRepository.findAllByMusician(pageable, musicianId);
     }
+
+    @Override
+    public List<Music> findAllFromMusician(Long musicianId, Integer perPage, Integer offSet, String name, String albumName) {
+        return this.musicRepository.findAllFromMusician(musicianId, perPage, offSet, name, albumName);
+    }
+
+    @Override
+    public Long findAllFromMusicianCount(Long musicianId, String name, String albumName) {
+        return this.musicRepository.findAllFromMusicianCount(musicianId, name, albumName);
+    }
 }

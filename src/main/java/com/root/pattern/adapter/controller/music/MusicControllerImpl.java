@@ -4,10 +4,7 @@ import com.root.pattern.adapter.dto.music.FilterMusicOutputDTO;
 import com.root.pattern.adapter.dto.music.ListFilterMusicOutputDTO;
 import com.root.pattern.adapter.dto.music.NewMusicDTO;
 import com.root.pattern.adapter.dto.music.NewMusicOutputDTO;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicianMusicsUsecase;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicsNameUsecase;
-import com.root.pattern.domain.interfaces.usecase.FilterOneMusicUsecase;
-import com.root.pattern.domain.interfaces.usecase.RegisterMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,7 @@ public class MusicControllerImpl implements MusicController {
     private final FilterMusicsNameUsecase filterMusicsNameUsecase;
     private final FilterOneMusicUsecase filterOneMusicUsecase;
     private final FilterMusicianMusicsUsecase filterMusicianMusicsUsecase;
+    private final GetAllOwnMusicsUsecase getAllOwnMusicsUsecase;
 
     @Override
     public ResponseEntity<NewMusicOutputDTO> register(
@@ -65,6 +63,20 @@ public class MusicControllerImpl implements MusicController {
         @RequestParam(value = "size", required = false, defaultValue = "5") Integer perPage
     ) {
         ListFilterMusicOutputDTO output = this.filterMusicianMusicsUsecase.exec(id, page, perPage);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<ListFilterMusicOutputDTO> getOwnMusicianMusics(
+        @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+        @RequestParam(value = "size", required = false, defaultValue = "5") Integer perPage,
+        @RequestParam(value = "name", required = false) String name,
+        @RequestParam(value = "album", required = false) String album,
+        Authentication authentication
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        ListFilterMusicOutputDTO output = this.getAllOwnMusicsUsecase.exec(musicianId, page, perPage, name, album);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

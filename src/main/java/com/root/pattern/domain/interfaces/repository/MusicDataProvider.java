@@ -20,4 +20,8 @@ public interface MusicDataProvider {
     void disableAllWithId(List<UUID> ids);
 
     Page<Music> findAllByMusician(Pageable pageable, Long musicianId);
+
+    List<Music> findAllFromMusician(Long musicianId, Integer perPage, Integer offSet, String name, String albumName);
+
+    Long findAllFromMusicianCount(Long musicianId, String name, String albumName);
 }

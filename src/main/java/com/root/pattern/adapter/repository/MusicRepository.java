@@ -38,4 +38,38 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "WHERE msc.id = :musicianId " +
         "AND m.disabled IS NOT TRUE")
     Page<Music> findAllByMusician(Pageable pageable, @Param("musicianId") Long musicianId);
+
+    @Query(value = "SELECT msc.*, ctg.*, alb.*, ms.* FROM TB_MUSICS msc " +
+        "JOIN TB_CATEGORIES ctg ON msc.MUS_CATEGORY_ID = ctg.CAT_ID " +
+        "LEFT JOIN TB_ALBUMS alb ON msc.MUS_ALBUM_ID = alb.ALB_ID " +
+        "JOIN TB_MUSICIANS ms ON msc.MUS_MUSICIAN_ID = ms.M_ID " +
+        "WHERE ms.M_ID = :musicianId " +
+        "AND msc.MUS_DISABLED IS NOT TRUE " +
+        "AND alb.ALB_DISABLED IS NOT TRUE " +
+        "AND (:name IS NULL OR LOWER(msc.MUS_NAME) LIKE CONCAT('%', LOWER(:name), '%')) " +
+        "AND (:albumName IS NULL OR LOWER(alb.ALB_NAME) LIKE CONCAT('%', LOWER(:albumName), '%')) " +
+        "ORDER BY msc.MUS_CREATED_AT DESC " +
+        "LIMIT :perPage OFFSET :offSet "
+        , nativeQuery = true)
+    List<Music> findAllFromMusician(
+        @Param("musicianId") Long musicianId,
+        @Param("perPage") Integer perPage,
+        @Param("offSet") Integer offSet,
+        @Param("name") String name, @Param("albumName") String albumName
+    );
+
+    @Query(value = "SELECT COUNT(*) FROM TB_MUSICS msc " +
+        "JOIN TB_CATEGORIES ctg ON msc.MUS_CATEGORY_ID = ctg.CAT_ID " +
+        "LEFT JOIN TB_ALBUMS alb ON msc.MUS_ALBUM_ID = alb.ALB_ID " +
+        "JOIN TB_MUSICIANS ms ON msc.MUS_MUSICIAN_ID = ms.M_ID " +
+        "WHERE ms.M_ID = :musicianId " +
+        "AND msc.MUS_DISABLED IS NOT TRUE " +
+        "AND alb.ALB_DISABLED IS NOT TRUE " +
+        "AND (:name IS NULL OR LOWER(msc.MUS_NAME) LIKE CONCAT('%', LOWER(:name), '%')) " +
+        "AND (:albumName IS NULL OR LOWER(alb.ALB_NAME) LIKE CONCAT('%', LOWER(:albumName), '%')) "
+        , nativeQuery = true)
+    Long findAllFromMusicianCount(
+        @Param("musicianId") Long musicianId,
+        @Param("name") String name, @Param("albumName") String albumName
+    );
 }
