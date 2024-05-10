@@ -10,10 +10,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-public class NewPlaylistOutputDTO {
+public class PlaylistDetailsOutputDTO {
     private UUID id;
     private String name;
     private String coverImage;
     private Date createdAt;
+    private Integer totalMusics;
     private Integer order;
 }

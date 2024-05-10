@@ -32,8 +32,11 @@ public class CreateNewPlaylistUsecaseImpl implements CreateNewPlaylistUsecase {
         this.checkIfUserIsDisabled(user);
 
         this.checkIfUserHasSamePlaylist(playlist.getName(), user.getId());
+        Integer newPlaylistOrder = this.lastOrderedPlaylist(user.getId());
 
         playlist.setUser(user);
+
+        playlist.setOrder(newPlaylistOrder + 1);
 
         Playlist newPlaylist = this.persistNewPlaylist(playlist);
 
@@ -77,6 +80,13 @@ public class CreateNewPlaylistUsecaseImpl implements CreateNewPlaylistUsecase {
     }
 
     @Override
+    public Integer lastOrderedPlaylist(Long userId) {
+        Integer lastOrdered = this.playlistDataProvider.getLastOrderedPlaylistFromUser(userId);
+        
+        return Objects.isNull(lastOrdered) ? 0 : lastOrdered;
+    }
+
+    @Override
     public Playlist persistNewPlaylist(Playlist playlist) {
         return this.playlistDataProvider.create(playlist);
     }
@@ -88,6 +98,7 @@ public class CreateNewPlaylistUsecaseImpl implements CreateNewPlaylistUsecase {
             .name(playlist.getName())
             .coverImage(playlist.getCoverImage())
             .createdAt(playlist.getCreatedAt())
+            .order(playlist.getOrder())
             .build();
     }
 }

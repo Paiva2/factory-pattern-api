@@ -26,13 +26,13 @@ public class Musician {
     @Enumerated(EnumType.STRING)
     private Role role = Role.MUSICIAN;
 
-    @Column(name = "MUS_EMAIL", unique = true, nullable = false)
+    @Column(name = "M_EMAIL", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "MUS_NAME", unique = true, nullable = false)
+    @Column(name = "M_NAME", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "MUS_PASSWORD", nullable = false)
+    @Column(name = "M_PASSWORD", nullable = false)
     private String password;
 
     @Column(name = "M_DISABLED")

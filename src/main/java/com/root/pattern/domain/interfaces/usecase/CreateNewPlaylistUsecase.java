@@ -15,6 +15,8 @@ public interface CreateNewPlaylistUsecase {
 
     void checkIfUserHasSamePlaylist(String playlistName, Long userId);
 
+    Integer lastOrderedPlaylist(Long userId);
+
     Playlist persistNewPlaylist(Playlist playlist);
 
     NewPlaylistOutputDTO mountOutput(Playlist playlist);

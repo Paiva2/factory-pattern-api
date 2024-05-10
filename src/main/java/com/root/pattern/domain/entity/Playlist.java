@@ -28,14 +28,18 @@ public class Playlist {
     @Column(name = "PLY_COVER_IMG")
     private String coverImage;
 
-    @OneToMany(mappedBy = "playlist")
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
     private Set<PlaylistMusic> playlistMusics;
+
+    @Column(name = "PLY_ORDER", nullable = false)
+    private Integer order;
 
     @Column(name = "PLY_DISABLED")
     private boolean disabled = false;
 
     @Column(name = "PLY_DISABLED_AT")
     private Date disabledAt;
+    
     @CreationTimestamp
     @Column(name = "PLY_CREATED_AT", updatable = false, nullable = false)
     private Date createdAt;

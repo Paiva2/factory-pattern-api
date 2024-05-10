@@ -27,7 +27,7 @@ public class PlaylistMusic {
 
     @ManyToOne
     @JoinColumn(name = "PLM_PLAYLIST_ID")
-    private Music playlist;
+    private Playlist playlist;
 
     @Column(name = "PLM_MUSIC_PLAYLIST_ORDER", nullable = false)
     private Integer musicPlaylistOrder;
