@@ -5,6 +5,7 @@ import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -20,5 +21,20 @@ public class PlaylistDataProviderImpl implements PlaylistDataProvider {
     @Override
     public Playlist create(Playlist playlist) {
         return this.playlistRepository.save(playlist);
+    }
+
+    @Override
+    public List<Playlist> getAllActivePlaylists(Long userId, Integer offSet, Integer perPage, String name) {
+        return this.playlistRepository.getAllActivePlaylistsFromUser(userId, offSet, perPage, name);
+    }
+
+    @Override
+    public Long countActivePlaylists(Long userId, String name) {
+        return this.playlistRepository.countAllActivePlaylistsFromUser(userId, name);
+    }
+
+    @Override
+    public Integer getLastOrderedPlaylistFromUser(Long userId) {
+        return this.playlistRepository.findLastOrderedByUser(userId);
     }
 }

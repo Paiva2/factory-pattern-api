@@ -23,7 +23,7 @@
 #### User context
 
 - [x] Create an playlist;
-- [ ] List all own playlists;
+- [x] List all own playlists;
 - [x] List all musics on an album;
 - [x] Fetch for an specific musician/album/music;
 - [x] Fetch all albums from a musician;
@@ -45,7 +45,7 @@
 - [x] Get all own albums;
 - [x] Register a new music;
 - [x] Get an music;
-- [x] Get all [own musics;
-- [ ] Edit an music (name, category, duration, album);]()
+- [x] Get all own musics;
+- [ ] Edit an music (name, category, duration, album)
 - [x] Disable an music;
 - [ ] Remove music from an album (may be a single).
