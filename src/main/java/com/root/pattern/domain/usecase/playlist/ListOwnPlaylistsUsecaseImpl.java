@@ -1,6 +1,6 @@
 package com.root.pattern.domain.usecase.playlist;
 
-import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputdTO;
+import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.adapter.dto.playlist.PlaylistDetailsOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.ForbiddenException;
@@ -25,7 +25,7 @@ public class ListOwnPlaylistsUsecaseImpl implements ListOwnPlaylistsUsecase {
     private final PlaylistDataProvider playlistDataProvider;
 
     @Override
-    public ListOwnPlaylistsOutputdTO exec(Long userId, Integer page, Integer perPage, String name) {
+    public ListOwnPlaylistsOutputDTO exec(Long userId, Integer page, Integer perPage, String name) {
         this.validateInputs(userId);
 
         User user = this.checkIfUserExists(userId);
@@ -79,8 +79,8 @@ public class ListOwnPlaylistsUsecaseImpl implements ListOwnPlaylistsUsecase {
     }
 
     @Override
-    public ListOwnPlaylistsOutputdTO mountOutput(List<Playlist> playlists, Integer page, Integer perPage, Long totalItems) {
-        return ListOwnPlaylistsOutputdTO.builder()
+    public ListOwnPlaylistsOutputDTO mountOutput(List<Playlist> playlists, Integer page, Integer perPage, Long totalItems) {
+        return ListOwnPlaylistsOutputDTO.builder()
             .page(page)
             .perPage(perPage)
             .totalPlaylists(totalItems)

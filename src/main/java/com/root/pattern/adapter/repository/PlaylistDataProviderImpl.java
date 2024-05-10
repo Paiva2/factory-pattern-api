@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Component
@@ -36,5 +37,10 @@ public class PlaylistDataProviderImpl implements PlaylistDataProvider {
     @Override
     public Integer getLastOrderedPlaylistFromUser(Long userId) {
         return this.playlistRepository.findLastOrderedByUser(userId);
+    }
+
+    @Override
+    public Optional<Playlist> findById(UUID playlistId) {
+        return this.playlistRepository.findById(playlistId);
     }
 }

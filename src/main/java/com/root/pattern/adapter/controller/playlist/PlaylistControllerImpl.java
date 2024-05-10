@@ -1,25 +1,30 @@
 package com.root.pattern.adapter.controller.playlist;
 
-import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputdTO;
+import com.root.pattern.adapter.dto.playlist.GetPlaylistOutputDTO;
+import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
 import com.root.pattern.domain.interfaces.usecase.CreateNewPlaylistUsecase;
+import com.root.pattern.domain.interfaces.usecase.GetPlaylistUsecase;
 import com.root.pattern.domain.interfaces.usecase.ListOwnPlaylistsUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
 public class PlaylistControllerImpl implements PlaylistController {
     private final CreateNewPlaylistUsecase createNewPlaylistUsecase;
     private final ListOwnPlaylistsUsecase listOwnPlaylistsUsecase;
+    private final GetPlaylistUsecase getPlaylistUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -33,14 +38,23 @@ public class PlaylistControllerImpl implements PlaylistController {
     }
 
     @Override
-    public ResponseEntity<ListOwnPlaylistsOutputdTO> listOwn(
+    public ResponseEntity<ListOwnPlaylistsOutputDTO> listOwn(
         Authentication authentication,
         @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
         @RequestParam(value = "size", required = false, defaultValue = "5") Integer perPage,
         @RequestParam(value = "name", required = false) String name
     ) {
         Long userId = Long.valueOf(authentication.getName());
-        ListOwnPlaylistsOutputdTO output = this.listOwnPlaylistsUsecase.exec(userId, page, perPage, name);
+        ListOwnPlaylistsOutputDTO output = this.listOwnPlaylistsUsecase.exec(userId, page, perPage, name);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<GetPlaylistOutputDTO> get(
+        @PathVariable("playlistId") UUID playlistId
+    ) {
+        GetPlaylistOutputDTO output = this.getPlaylistUsecase.exec(playlistId);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

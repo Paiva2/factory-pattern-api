@@ -24,6 +24,7 @@
 
 - [x] Create an playlist;
 - [x] List all own playlists;
+- [x] Get specific playlist;
 - [x] List all musics on an album;
 - [x] Fetch for an specific musician/album/music;
 - [x] Fetch all albums from a musician;

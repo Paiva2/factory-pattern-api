@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class ListOwnPlaylistsOutputdTO {
+public class ListOwnPlaylistsOutputDTO {
     int page;
     int perPage;
     long totalPlaylists;

@@ -1,13 +1,13 @@
 package com.root.pattern.domain.interfaces.usecase;
 
-import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputdTO;
+import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.domain.entity.Playlist;
 import com.root.pattern.domain.entity.User;
 
 import java.util.List;
 
 public interface ListOwnPlaylistsUsecase {
-    ListOwnPlaylistsOutputdTO exec(Long userId, Integer page, Integer perPage, String name);
+    ListOwnPlaylistsOutputDTO exec(Long userId, Integer page, Integer perPage, String name);
 
     void validateInputs(Long userId);
 
@@ -19,5 +19,5 @@ public interface ListOwnPlaylistsUsecase {
 
     Long countPlaylists(Long userId, String name);
 
-    ListOwnPlaylistsOutputdTO mountOutput(List<Playlist> playlists, Integer page, Integer perPage, Long totalItems);
+    ListOwnPlaylistsOutputDTO mountOutput(List<Playlist> playlists, Integer page, Integer perPage, Long totalItems);
 }

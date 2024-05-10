@@ -45,6 +45,7 @@ public class RequestFilterChain extends OncePerRequestFilter {
             add(new AntPathRequestMatcher("/api/v1/music/{musicId}", HttpMethod.GET.toString()));
             add(new AntPathRequestMatcher("/api/v1/musician/album/all", HttpMethod.GET.toString()));
             add(new AntPathRequestMatcher("/api/v1/music/all/{musicianId}", HttpMethod.GET.toString()));
+            add(new AntPathRequestMatcher("/api/v1/playlist/{playlistId}", HttpMethod.GET.toString()));
 
             add(new AntPathRequestMatcher("/api/v1/user/register", HttpMethod.POST.toString()));
             add(new AntPathRequestMatcher("/api/v1/musician/register", HttpMethod.POST.toString()));

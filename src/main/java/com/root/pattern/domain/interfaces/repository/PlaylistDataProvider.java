@@ -4,6 +4,7 @@ import com.root.pattern.domain.entity.Playlist;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface PlaylistDataProvider {
     Optional<Playlist> findUserActivesByName(String playlistName, Long userId);
@@ -15,4 +16,6 @@ public interface PlaylistDataProvider {
     Long countActivePlaylists(Long userId, String name);
 
     Integer getLastOrderedPlaylistFromUser(Long userId);
+
+    Optional<Playlist> findById(UUID playlistId);
 }
