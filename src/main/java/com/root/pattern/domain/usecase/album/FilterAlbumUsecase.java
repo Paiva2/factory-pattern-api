@@ -55,7 +55,7 @@ public class FilterAlbumUsecase {
                 .map(music -> MusicOutputDTO.builder()
                     .id(music.getId())
                     .name(music.getName())
-                    .isSingle(music.isSingle())
+                    .isSingle(music.getIsSingle())
                     .duration(music.getDuration())
                     .order(Math.toIntExact(music.getAlbumOrder()))
                     .category(CategoryOutputDTO.builder()

@@ -26,7 +26,7 @@ public class Album {
     private String name;
 
     @Column(name = "ALB_DISABLED")
-    private boolean disabled = false;
+    private Boolean disabled = false;
 
     @Column(name = "ALB_DISABLED_AT")
     private Date disabledAt;

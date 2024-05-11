@@ -57,7 +57,7 @@ public class FilterMusicianUsecase {
     }
 
     public void checkIfMusicianIsDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }

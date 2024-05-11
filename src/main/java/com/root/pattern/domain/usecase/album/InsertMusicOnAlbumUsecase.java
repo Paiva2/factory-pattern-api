@@ -63,7 +63,7 @@ public class InsertMusicOnAlbumUsecase {
     }
 
     public void checkIfMusicianIsDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
@@ -73,7 +73,7 @@ public class InsertMusicOnAlbumUsecase {
     }
 
     public void checkIfAlbumIsDisabled(Album album) {
-        if (album.isDisabled()) {
+        if (album.getDisabled()) {
             throw new ForbiddenException("Album is disabled");
         }
     }
@@ -92,7 +92,7 @@ public class InsertMusicOnAlbumUsecase {
     }
 
     public void checkIfMusicIsDisabled(Music music) {
-        if (music.isDisabled()) {
+        if (music.getDisabled()) {
             throw new ForbiddenException("Music is disabled");
         }
     }
@@ -122,7 +122,7 @@ public class InsertMusicOnAlbumUsecase {
         Long lastOrderOnAlbum = this.getAlbumLastMusicOrder(music.getMusician().getId(), album.getId());
         Long newMusicOrder = Objects.isNull(lastOrderOnAlbum) ? 0 : lastOrderOnAlbum + 1;
 
-        music.setSingle(false);
+        music.setIsSingle(false);
         music.setAlbum(album);
         music.setAlbumOrder(newMusicOrder);
 
@@ -133,7 +133,7 @@ public class InsertMusicOnAlbumUsecase {
         return MusicOutputDTO.builder()
             .id(music.getId())
             .name(music.getName())
-            .disabled(music.isDisabled())
+            .disabled(music.getDisabled())
             .duration(music.getDuration())
             .order(Objects.nonNull(music.getAlbumOrder()) ? Math.toIntExact(music.getAlbumOrder()) : null)
             .createdAt(music.getCreatedAt())
@@ -142,7 +142,7 @@ public class InsertMusicOnAlbumUsecase {
                 .name(music.getCategory().getName().name())
                 .build()
             )
-            .isSingle(music.isSingle())
+            .isSingle(music.getIsSingle())
             .build();
     }
 }

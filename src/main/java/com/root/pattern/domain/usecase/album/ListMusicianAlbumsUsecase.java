@@ -40,7 +40,7 @@ public class ListMusicianAlbumsUsecase {
 
         Musician musician = this.validateIfMusicianExists(musicianId);
 
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician disabled");
         }
 

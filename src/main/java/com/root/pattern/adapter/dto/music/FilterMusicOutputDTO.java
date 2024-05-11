@@ -17,7 +17,7 @@ public class FilterMusicOutputDTO {
     private UUID id;
     private Long duration;
     private String name;
-    private boolean isSingle;
+    private Boolean isSingle;
     private CategoryOutputDTO category;
     private Date createdAt;
     private MusicianOutputDTO musician;

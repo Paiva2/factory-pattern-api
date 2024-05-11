@@ -33,11 +33,11 @@ public class PlaylistMusic {
     private Integer musicPlaylistOrder;
 
     @Column(name = "PLM_DISABLED")
-    private boolean disabled = false;
+    private Boolean disabled = false;
 
     @Column(name = "PLM_DISABLED_AT")
     private Date disabledAt;
-    
+
     @CreationTimestamp
     @Column(name = "PLM_CREATED_AT", updatable = false, nullable = false)
     private Date createdAt;

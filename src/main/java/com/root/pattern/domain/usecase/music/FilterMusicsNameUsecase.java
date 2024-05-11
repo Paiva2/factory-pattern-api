@@ -68,7 +68,7 @@ public class FilterMusicsNameUsecase {
                         .name(music.getCategory().getName().toString())
                         .build()
                     )
-                    .isSingle(music.isSingle())
+                    .isSingle(music.getIsSingle())
                     .createdAt(music.getCreatedAt())
                     .album(Objects.nonNull(music.getAlbum()) ?
                         AlbumOutputDTO.builder()

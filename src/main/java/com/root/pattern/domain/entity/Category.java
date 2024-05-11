@@ -31,7 +31,7 @@ public class Category {
     List<Music> musics;
 
     @Column(name = "CAT_DISABLED")
-    private boolean disabled = false;
+    private Boolean disabled = false;
 
     @Column(name = "CAT_DISABLED_AT")
     private Date disabledAt;

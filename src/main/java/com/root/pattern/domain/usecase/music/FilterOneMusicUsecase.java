@@ -40,7 +40,7 @@ public class FilterOneMusicUsecase {
         return FilterMusicOutputDTO.builder()
             .id(music.getId())
             .name(music.getName())
-            .isSingle(music.isSingle())
+            .isSingle(music.getIsSingle())
             .duration(music.getDuration())
             .createdAt(music.getCreatedAt())
             .category(CategoryOutputDTO.builder()

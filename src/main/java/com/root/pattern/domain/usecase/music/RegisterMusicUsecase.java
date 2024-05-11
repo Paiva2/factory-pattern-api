@@ -77,9 +77,9 @@ public class RegisterMusicUsecase {
     }
 
     public void validateIfMusicIsSingle(Music music) {
-        if (music.isSingle() && Objects.nonNull(music.getAlbum()) && Objects.nonNull(music.getAlbum().getId())) {
+        if (music.getIsSingle() && Objects.nonNull(music.getAlbum()) && Objects.nonNull(music.getAlbum().getId())) {
             throw new BadRequestException("Music can't have an album if it's a single");
-        } else if (!music.isSingle() && Objects.isNull(music.getAlbum())) {
+        } else if (!music.getIsSingle() && Objects.isNull(music.getAlbum())) {
             throw new BadRequestException("Music must have an album if it's not a single");
         }
     }
@@ -107,7 +107,7 @@ public class RegisterMusicUsecase {
             .duration(music.getDuration())
             .albumName(Objects.nonNull(music.getAlbum()) ? music.getAlbum().getName() : null)
             .categoryName(music.getCategory().getName().toString())
-            .isSingle(music.isSingle())
+            .isSingle(music.getIsSingle())
             .createdAt(music.getCreatedAt())
             .build();
     }

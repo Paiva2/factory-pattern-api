@@ -47,10 +47,10 @@ public class Music {
     private Set<PlaylistMusic> playlistMusics;
 
     @Column(name = "MUSIC_IS_SINGLE", nullable = false)
-    private boolean isSingle;
+    private Boolean isSingle;
 
     @Column(name = "MUS_DISABLED")
-    private boolean disabled = false;
+    private Boolean disabled = false;
 
     @Column(name = "MUS_DISABLED_AT")
     private Date disabledAt;

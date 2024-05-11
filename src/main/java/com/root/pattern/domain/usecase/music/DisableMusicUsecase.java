@@ -57,7 +57,7 @@ public class DisableMusicUsecase {
     }
 
     public void checkIfMusicianIsDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
@@ -67,7 +67,7 @@ public class DisableMusicUsecase {
     }
 
     public void checkIfMusicIsDisabled(Music music) {
-        if (music.isDisabled()) {
+        if (music.getDisabled()) {
             throw new ConflictException("Music is already disabled");
         }
     }
@@ -97,9 +97,9 @@ public class DisableMusicUsecase {
         return MusicOutputDTO.builder()
             .id(music.getId())
             .name(music.getName())
-            .isSingle(music.isSingle())
+            .isSingle(music.getIsSingle())
             .duration(music.getDuration())
-            .disabled(music.isDisabled())
+            .disabled(music.getDisabled())
             .order(Objects.nonNull(music.getAlbumOrder()) ? Math.toIntExact(music.getAlbumOrder()) : null)
             .category(CategoryOutputDTO.builder().id(music.getCategory().getId()).name(music.getCategory().getName().name()).build())
             .createdAt(music.getCreatedAt())

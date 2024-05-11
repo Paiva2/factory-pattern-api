@@ -67,7 +67,7 @@ public class RemoveMusicFromAlbumUsecase {
     }
 
     private void checkIfMusicianIsDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
@@ -77,7 +77,7 @@ public class RemoveMusicFromAlbumUsecase {
     }
 
     private void checkIfMusicIsDisabled(Music music) {
-        if (music.isDisabled()) {
+        if (music.getDisabled()) {
             throw new ForbiddenException("Music is disabled");
         }
     }
@@ -96,7 +96,7 @@ public class RemoveMusicFromAlbumUsecase {
 
     private Music removeAlbumFromMusic(Music music) {
         music.setAlbum(null);
-        music.setSingle(true);
+        music.setIsSingle(true);
         music.setAlbumOrder(null);
 
         return music;
@@ -117,9 +117,9 @@ public class RemoveMusicFromAlbumUsecase {
             .name(music.getName())
             .duration(music.getDuration())
             .order(Objects.isNull(music.getAlbumOrder()) ? null : Math.toIntExact(music.getAlbumOrder()))
-            .isSingle(music.isSingle())
+            .isSingle(music.getIsSingle())
             .createdAt(music.getCreatedAt())
-            .disabled(music.isDisabled())
+            .disabled(music.getDisabled())
             .category(CategoryOutputDTO.builder()
                 .id(music.getId())
                 .name(music.getName())

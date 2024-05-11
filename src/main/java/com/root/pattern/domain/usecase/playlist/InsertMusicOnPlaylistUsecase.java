@@ -85,7 +85,7 @@ public class InsertMusicOnPlaylistUsecase {
     }
 
     public void checkIfMusicIsDisabled(Music music) {
-        if (music.isDisabled()) {
+        if (music.getDisabled()) {
             throw new ForbiddenException("Music is disabled");
         }
     }

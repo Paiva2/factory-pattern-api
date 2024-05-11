@@ -26,7 +26,7 @@ public class CreateAlbumUsecase {
 
         Musician musician = this.checkIfMusicianExists(musicianId);
 
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
 

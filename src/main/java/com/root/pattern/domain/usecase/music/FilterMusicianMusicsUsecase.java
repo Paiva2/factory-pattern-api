@@ -59,7 +59,7 @@ public class FilterMusicianMusicsUsecase {
     }
 
     public void checkIfMusicianIsNotDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
@@ -79,7 +79,7 @@ public class FilterMusicianMusicsUsecase {
                 FilterMusicOutputDTO.builder()
                     .id(music.getId())
                     .name(music.getName())
-                    .isSingle(music.isSingle())
+                    .isSingle(music.getIsSingle())
                     .duration(music.getDuration())
                     .createdAt(music.getCreatedAt())
                     .category(CategoryOutputDTO.builder()

@@ -64,13 +64,13 @@ public class DisableAlbumUsecase {
     }
 
     public void checkIfMusicianIsNotDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
 
     public void checkIfAlbumIsNotDisabled(Album album) {
-        if (album.isDisabled()) {
+        if (album.getDisabled()) {
             throw new ForbiddenException("Album is already disabled");
         }
     }
