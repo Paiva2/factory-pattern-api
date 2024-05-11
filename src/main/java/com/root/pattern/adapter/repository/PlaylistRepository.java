@@ -46,4 +46,10 @@ public interface PlaylistRepository extends JpaRepository<Playlist, UUID> {
         "ORDER BY p.PLY_ORDER DESC " +
         "LIMIT 1", nativeQuery = true)
     Integer findLastOrderedByUser(@Param("userId") Long userId);
+
+    @Query("SELECT p FROM Playlist p " +
+        "LEFT JOIN FETCH p.playlistMusics pm " +
+        "WHERE p.id = :playlistId " +
+        "AND p.isPrivate IS NOT TRUE AND p.disabled IS NOT TRUE")
+    Optional<Playlist> findByIdAndIsPublic(@Param("playlistId") UUID playlistId);
 }
