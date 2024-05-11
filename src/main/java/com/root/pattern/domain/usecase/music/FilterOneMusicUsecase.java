@@ -56,12 +56,13 @@ public class FilterOneMusicUsecase {
                 .createdAt(music.getMusician().getCreatedAt())
                 .build()
             )
-            .album(AlbumOutputDTO.builder()
-                .id(music.getAlbum().getId())
-                .name(music.getAlbum().getName())
-                .createdAt(music.getAlbum().getCreatedAt())
-                .totalMusics(music.getAlbum().getMusic().size())
-                .build()
+            .album(Objects.isNull(music.getAlbum()) ? null :
+                AlbumOutputDTO.builder()
+                    .id(music.getAlbum().getId())
+                    .name(music.getAlbum().getName())
+                    .createdAt(music.getAlbum().getCreatedAt())
+                    .totalMusics(music.getAlbum().getMusic().size())
+                    .build()
             )
             .build();
     }

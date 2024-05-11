@@ -51,4 +51,10 @@ public interface MusicController {
         UUID musicId,
         UUID albumId
     );
+
+    @PatchMapping("/{musicId}/remove/album")
+    ResponseEntity<MusicOutputDTO> removeFromAlbum(
+        Authentication authentication,
+        UUID musicId
+    );
 }

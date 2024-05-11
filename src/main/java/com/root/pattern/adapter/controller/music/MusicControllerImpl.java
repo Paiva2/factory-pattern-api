@@ -2,6 +2,7 @@ package com.root.pattern.adapter.controller.music;
 
 import com.root.pattern.adapter.dto.music.*;
 import com.root.pattern.domain.usecase.album.InsertMusicOnAlbumUsecase;
+import com.root.pattern.domain.usecase.album.RemoveMusicFromAlbumUsecase;
 import com.root.pattern.domain.usecase.music.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class MusicControllerImpl implements MusicController {
     private final GetAllOwnMusicsUsecase getAllOwnMusicsUsecase;
     private final DisableMusicUsecase disableMusicUsecase;
     private final InsertMusicOnAlbumUsecase insertMusicOnAlbumUsecase;
+    private final RemoveMusicFromAlbumUsecase removeMusicFromAlbumUsecase;
 
     @Override
     public ResponseEntity<NewMusicOutputDTO> register(
@@ -100,6 +102,17 @@ public class MusicControllerImpl implements MusicController {
     ) {
         Long musicianId = Long.valueOf(authentication.getName());
         MusicOutputDTO output = this.insertMusicOnAlbumUsecase.exec(musicianId, albumId, musicId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(output);
+    }
+
+    @Override
+    public ResponseEntity<MusicOutputDTO> removeFromAlbum(
+        Authentication authentication,
+        @PathVariable("musicId") UUID musicId
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        MusicOutputDTO output = this.removeMusicFromAlbumUsecase.exec(musicianId, musicId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
     }

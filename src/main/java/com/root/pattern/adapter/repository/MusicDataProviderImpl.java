@@ -67,4 +67,9 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public Optional<Music> findByAlbum(UUID albumId, UUID musicId) {
         return this.musicRepository.findByAlbumAndId(albumId, musicId);
     }
+
+    @Override
+    public void decreaseAllOrderFromMusicOnAlbum(UUID albumId, Integer decreaseValue, Long musicAlbumOrderRemoved) {
+        this.musicRepository.decreaseAllNumberAlbumMusicOrder(albumId, decreaseValue, musicAlbumOrderRemoved);
+    }
 }

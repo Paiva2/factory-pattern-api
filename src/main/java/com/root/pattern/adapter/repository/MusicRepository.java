@@ -20,13 +20,19 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "WHERE m.name = :musicName " +
         "AND ma.id = :albumId " +
         "AND m.disabled IS NOT TRUE")
-    Optional<Music> findByAlbumAndName(@Param("albumId") UUID albumId, @Param("musicName") String musicName);
+    Optional<Music> findByAlbumAndName(
+        @Param("albumId") UUID albumId,
+        @Param("musicName") String musicName
+    );
 
     @Query(value = "SELECT m FROM Music m " +
         "LEFT JOIN m.album ma " +
         "WHERE (LOWER(m.name) LIKE CONCAT('%', LOWER(:musicName), '%') " +
         "AND m.disabled IS NOT TRUE)")
-    Page<Music> findAllByNameLike(Pageable pageable, @Param("musicName") String musicName);
+    Page<Music> findAllByNameLike(
+        Pageable pageable,
+        @Param("musicName") String musicName
+    );
 
     @Modifying
     @Query("UPDATE Music m SET m.disabled = true, m.disabledAt = now() WHERE m.id IN (:ids)")
@@ -37,7 +43,10 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "INNER JOIN m.musician msc " +
         "WHERE msc.id = :musicianId " +
         "AND m.disabled IS NOT TRUE")
-    Page<Music> findAllByMusician(Pageable pageable, @Param("musicianId") Long musicianId);
+    Page<Music> findAllByMusician(
+        Pageable pageable,
+        @Param("musicianId") Long musicianId
+    );
 
     @Query(value = "SELECT msc.*, ctg.*, alb.*, ms.* FROM TB_MUSICS msc " +
         "JOIN TB_CATEGORIES ctg ON msc.MUS_CATEGORY_ID = ctg.CAT_ID " +
@@ -80,12 +89,29 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "AND alb.ALB_ID = :albumId " +
         "ORDER BY msc.MUS_ALBUM_ORDER DESC " +
         "LIMIT 1", nativeQuery = true)
-    Long findLastOrderedByAlbum(@Param("musicianId") Long musicianId, @Param("albumId") UUID albumId);
-    
+    Long findLastOrderedByAlbum(
+        @Param("musicianId") Long musicianId,
+        @Param("albumId") UUID albumId
+    );
+
     @Query("SELECT m FROM Music m " +
         "JOIN FETCH m.album ma " +
         "WHERE m.id = :musicId " +
         "AND ma.id = :albumId " +
         "AND m.disabled IS NOT TRUE")
-    Optional<Music> findByAlbumAndId(@Param("albumId") UUID albumId, @Param("musicId") UUID musicId);
+    Optional<Music> findByAlbumAndId(
+        @Param("albumId") UUID albumId,
+        @Param("musicId") UUID musicId
+    );
+
+    @Modifying
+    @Query("UPDATE Music msc " +
+        "SET msc.albumOrder = msc.albumOrder - CAST(:decreaseValue as integer) " +
+        "WHERE msc.album.id = :albumId " +
+        "AND msc.albumOrder > CAST(:musicAlbumOrderRemoved as integer)")
+    void decreaseAllNumberAlbumMusicOrder(
+        @Param("albumId") UUID albumId,
+        @Param("decreaseValue") Integer decreaseValue,
+        @Param("musicAlbumOrderRemoved") Long musicAlbumOrderRemoved
+    );
 }

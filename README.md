@@ -45,8 +45,8 @@
 - [x] Get an album;
 - [x] Get all own albums;
 - [x] Register a new music;
-- [x] Insert existing music on album;
-- [ ] Remove existing music from album;
+- [x] Insert existing music on album and reorder;
+- [x] Remove existing music from album and reorder;
 - [x] Get an music;
 - [x] Get all own musics;
 - [ ] Edit an music (name, category, duration, album, order)
