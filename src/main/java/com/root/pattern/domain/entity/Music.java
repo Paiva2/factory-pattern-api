@@ -40,6 +40,9 @@ public class Music {
     @JoinColumn(name = "MUS_CATEGORY_ID")
     private Category category;
 
+    @Column(name = "MUS_ALBUM_ORDER")
+    private Long albumOrder;
+
     @OneToMany(mappedBy = "music")
     private Set<PlaylistMusic> playlistMusics;
 

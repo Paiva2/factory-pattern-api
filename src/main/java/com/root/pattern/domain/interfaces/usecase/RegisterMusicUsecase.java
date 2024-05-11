@@ -23,5 +23,7 @@ public interface RegisterMusicUsecase {
 
     void validateIfMusicianHasMusicWithSameNameOnAlbum(UUID albumId, String musicName);
 
+    Long checkLastMusicOrderOnAlbum(Long musicianId, UUID albumId);
+
     NewMusicOutputDTO mountOutput(Music music);
 }

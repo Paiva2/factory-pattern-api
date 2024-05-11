@@ -32,6 +32,7 @@ public class Album {
     private Date disabledAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
+    @OrderBy("albumOrder ASC")
     private List<Music> music;
 
     @ManyToOne(fetch = FetchType.EAGER)

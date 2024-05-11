@@ -48,7 +48,11 @@ public class RegisterMusicUsecaseImpl implements RegisterMusicUsecase {
 
             this.validateIfMusicianHasMusicWithSameNameOnAlbum(album.getId(), music.getName());
 
+            Long lastOrderedMusicOnAlbum = this.checkLastMusicOrderOnAlbum(musician.getId(), album.getId());
+            Long musicOrder = Objects.nonNull(lastOrderedMusicOnAlbum) ? lastOrderedMusicOnAlbum + 1 : 0L;
+
             music.setAlbum(album);
+            music.setAlbumOrder(musicOrder);
         }
 
         Music saveMusic = this.musicDataProvider.register(music);
@@ -98,6 +102,11 @@ public class RegisterMusicUsecaseImpl implements RegisterMusicUsecase {
         if (Objects.nonNull(music)) {
             throw new ConflictException("Album already has an music with this title");
         }
+    }
+
+    @Override
+    public Long checkLastMusicOrderOnAlbum(Long musicianId, UUID albumId) {
+        return this.musicDataProvider.findLastMusicOnAlbumOrder(musicianId, albumId);
     }
 
     @Override

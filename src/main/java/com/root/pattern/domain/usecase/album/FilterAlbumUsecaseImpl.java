@@ -62,6 +62,7 @@ public class FilterAlbumUsecaseImpl implements FilterAlbumUsecase {
                     .name(music.getName())
                     .isSingle(music.isSingle())
                     .duration(music.getDuration())
+                    .order(Math.toIntExact(music.getAlbumOrder()))
                     .category(CategoryOutputDTO.builder()
                         .id(music.getCategory().getId())
                         .name(music.getCategory().getName().toString())
