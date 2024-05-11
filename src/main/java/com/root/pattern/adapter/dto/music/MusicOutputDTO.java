@@ -17,5 +17,7 @@ public class MusicOutputDTO {
     private String name;
     private CategoryOutputDTO category;
     private boolean isSingle;
+    private Integer order;
+    private boolean disabled;
     private Date createdAt;
 }

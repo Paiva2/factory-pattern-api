@@ -21,7 +21,7 @@ public class PlaylistMusic {
     @Column(name = "PLM_ID")
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PLM_MUSIC_ID")
     private Music music;
 
@@ -37,6 +37,7 @@ public class PlaylistMusic {
 
     @Column(name = "PLM_DISABLED_AT")
     private Date disabledAt;
+    
     @CreationTimestamp
     @Column(name = "PLM_CREATED_AT", updatable = false, nullable = false)
     private Date createdAt;

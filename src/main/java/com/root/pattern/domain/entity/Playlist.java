@@ -29,17 +29,21 @@ public class Playlist {
     private String coverImage;
 
     @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
+    @OrderBy("musicPlaylistOrder ASC")
     private Set<PlaylistMusic> playlistMusics;
 
     @Column(name = "PLY_ORDER", nullable = false)
     private Integer order;
+
+    @Column(name = "PLY_IS_PRIVATE", nullable = false)
+    private boolean isPrivate = false;
 
     @Column(name = "PLY_DISABLED")
     private boolean disabled = false;
 
     @Column(name = "PLY_DISABLED_AT")
     private Date disabledAt;
-    
+
     @CreationTimestamp
     @Column(name = "PLY_CREATED_AT", updatable = false, nullable = false)
     private Date createdAt;

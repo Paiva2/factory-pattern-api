@@ -41,6 +41,6 @@ public class PlaylistDataProviderImpl implements PlaylistDataProvider {
 
     @Override
     public Optional<Playlist> findById(UUID playlistId) {
-        return this.playlistRepository.findById(playlistId);
+        return this.playlistRepository.findByIdAndIsPublic(playlistId);
     }
 }

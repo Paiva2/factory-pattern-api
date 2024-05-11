@@ -20,7 +20,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 //TODO: TESTS
-//TODO: OPTION TO MAKE PRIVATE OR PUBLIC
 @AllArgsConstructor
 @Builder
 public class GetPlaylistUsecaseImpl implements GetPlaylistUsecase {
@@ -86,6 +85,8 @@ public class GetPlaylistUsecaseImpl implements GetPlaylistUsecase {
                             .name(playlistMusic.getMusic().getCategory().getName().name())
                             .build()
                         )
+                        .disabled(playlistMusic.isDisabled())
+                        .order(playlistMusic.getMusicPlaylistOrder())
                         .isSingle(playlistMusic.getMusic().isSingle())
                         .createdAt(playlistMusic.getMusic().getCreatedAt())
                         .build()
