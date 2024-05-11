@@ -20,9 +20,8 @@ public interface PlaylistRepository extends JpaRepository<Playlist, UUID> {
         "AND p.disabled IS NOT TRUE")
     Optional<Playlist> findActivesByName(@Param("playlistName") String playlistName, @Param("userId") Long userId);
 
-    @Query(value = "SELECT tbp.*, tpm.*, msc.* FROM TB_PLAYLISTS tbp " +
+    @Query(value = "SELECT DISTINCT(tbp.PLY_ID), tbp.* FROM TB_PLAYLISTS tbp " +
         "LEFT JOIN TB_PLAYLIST_MUSICS tpm ON tpm.PLM_PLAYLIST_ID = tbp.PLY_ID " +
-        "LEFT JOIN TB_MUSICS msc ON msc.MUS_ID = tpm.PLM_MUSIC_ID " +
         "WHERE tbp.PLY_USER_ID = :userId " +
         "AND tbp.PLY_DISABLED IS NOT TRUE " +
         "AND (:name IS NULL OR LOWER(tbp.PLY_NAME) LIKE CONCAT('%', LOWER(:name), '%')) " +
@@ -31,12 +30,12 @@ public interface PlaylistRepository extends JpaRepository<Playlist, UUID> {
         nativeQuery = true)
     List<Playlist> getAllActivePlaylistsFromUser(@Param("userId") Long userId, @Param("offSet") Integer offSet, @Param("perPage") Integer perPage, @Param("name") String name);
 
-    @Query(value = "SELECT COUNT(*) FROM TB_PLAYLISTS tbp " +
+    @Query(value = "SELECT COUNT(*) FROM (SELECT DISTINCT(tbp.PLY_ID) FROM TB_PLAYLISTS tbp " +
         "LEFT JOIN TB_PLAYLIST_MUSICS tpm ON tpm.PLM_PLAYLIST_ID = tbp.PLY_ID " +
         "LEFT JOIN TB_MUSICS msc ON msc.MUS_ID = tpm.PLM_MUSIC_ID " +
         "WHERE tbp.PLY_USER_ID = :userId " +
         "AND tbp.PLY_DISABLED IS NOT TRUE " +
-        "AND (:name IS NULL OR LOWER(tbp.PLY_NAME) LIKE CONCAT('%', LOWER(:name), '%'))",
+        "AND (:name IS NULL OR LOWER(tbp.PLY_NAME) LIKE CONCAT('%', LOWER(:name), '%')))",
         nativeQuery = true)
     Long countAllActivePlaylistsFromUser(@Param("userId") Long userId, @Param("name") String name);
 

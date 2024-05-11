@@ -21,6 +21,8 @@ public interface DisableMusicUsecase {
 
     void checkIfMusicBelongsToMusician(Music music, Musician musician);
 
+    void disableAllPlaylistMusicsUsingMusic(Music music);
+
     Music disableMusic(Music music);
 
     MusicOutputDTO mountOutput(Music music);

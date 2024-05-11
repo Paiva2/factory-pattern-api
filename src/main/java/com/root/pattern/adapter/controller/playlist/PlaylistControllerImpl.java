@@ -6,8 +6,10 @@ import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
 import com.root.pattern.domain.interfaces.usecase.CreateNewPlaylistUsecase;
 import com.root.pattern.domain.interfaces.usecase.GetPlaylistUsecase;
+import com.root.pattern.domain.interfaces.usecase.InsertMusicOnPlaylistUsecase;
 import com.root.pattern.domain.interfaces.usecase.ListOwnPlaylistsUsecase;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -25,6 +27,7 @@ public class PlaylistControllerImpl implements PlaylistController {
     private final CreateNewPlaylistUsecase createNewPlaylistUsecase;
     private final ListOwnPlaylistsUsecase listOwnPlaylistsUsecase;
     private final GetPlaylistUsecase getPlaylistUsecase;
+    private final InsertMusicOnPlaylistUsecase insertMusicOnPlaylistUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -57,5 +60,17 @@ public class PlaylistControllerImpl implements PlaylistController {
         GetPlaylistOutputDTO output = this.getPlaylistUsecase.exec(playlistId);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<Void> newMusic(
+        Authentication authentication,
+        @PathVariable("playlistId") UUID playlistId,
+        @PathVariable("musicId") UUID musicId
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        this.insertMusicOnPlaylistUsecase.exec(userId, musicId, playlistId);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

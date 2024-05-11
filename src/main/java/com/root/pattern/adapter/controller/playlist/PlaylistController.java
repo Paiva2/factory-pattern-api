@@ -32,4 +32,7 @@ public interface PlaylistController {
 
     @GetMapping("/{playlistId}")
     ResponseEntity<GetPlaylistOutputDTO> get(UUID playlistId);
+
+    @PostMapping("/{playlistId}/music/{musicId}")
+    ResponseEntity<Void> newMusic(Authentication authentication, UUID playlistId, UUID musicId);
 }

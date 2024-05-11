@@ -90,8 +90,13 @@ public class DisableMusicUsecaseImpl implements DisableMusicUsecase {
     }
 
     @Override
-    public Music disableMusic(Music music) {
+    public void disableAllPlaylistMusicsUsingMusic(Music music) {
         this.playlistMusicDataProvider.disableAllByMusicId(music.getId());
+    }
+
+    @Override
+    public Music disableMusic(Music music) {
+        this.disableAllPlaylistMusicsUsingMusic(music);
 
         music.setDisabled(true);
 
