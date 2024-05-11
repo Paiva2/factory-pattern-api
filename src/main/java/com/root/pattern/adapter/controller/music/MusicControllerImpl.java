@@ -1,9 +1,8 @@
 package com.root.pattern.adapter.controller.music;
 
 import com.root.pattern.adapter.dto.music.*;
-import com.root.pattern.domain.interfaces.usecase.music.*;
-import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicianMusicsUsecase;
-import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicsNameUsecase;
+import com.root.pattern.domain.usecase.album.InsertMusicOnAlbumUsecase;
+import com.root.pattern.domain.usecase.music.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

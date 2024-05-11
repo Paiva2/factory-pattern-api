@@ -5,7 +5,7 @@ import com.root.pattern.domain.strategy.concrete.CopyPropertiesBeanUtilStrategy;
 import com.root.pattern.domain.strategy.concrete.EmailValidatorRegexStrategy;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import com.root.pattern.domain.strategy.context.PropertiesCopier;
-import com.root.pattern.domain.usecase.user.UpdateUserProfileUsecaseImpl;
+import com.root.pattern.domain.usecase.user.UpdateUserProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +26,8 @@ public class UpdateUserProfileFactory {
 
     @Bean("UpdateUserProfileUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public UpdateUserProfileUsecaseImpl create() {
-        return UpdateUserProfileUsecaseImpl.builder()
+    public UpdateUserProfileUsecase create() {
+        return UpdateUserProfileUsecase.builder()
             .userDataProvider(this.userDataProvider)
             .passwordEncoder(this.passwordEncoder)
             .mailValidator(this.mailValidatorStrategy())

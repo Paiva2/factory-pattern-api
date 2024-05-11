@@ -1,12 +1,7 @@
 package com.root.pattern.adapter.controller.album;
 
 import com.root.pattern.adapter.dto.album.*;
-import com.root.pattern.domain.interfaces.usecase.album.CreateAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.album.UpdateAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.album.DisableAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumsNameUsecase;
-import com.root.pattern.domain.interfaces.usecase.musician.ListMusicianAlbumsUsecase;
+import com.root.pattern.domain.usecase.album.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

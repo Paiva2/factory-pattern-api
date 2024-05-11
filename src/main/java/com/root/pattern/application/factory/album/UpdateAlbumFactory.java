@@ -1,9 +1,8 @@
 package com.root.pattern.application.factory.album;
 
-import com.root.pattern.domain.interfaces.usecase.album.UpdateAlbumUsecase;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.usecase.album.UpdateAlbumUsecaseImpl;
+import com.root.pattern.domain.usecase.album.UpdateAlbumUsecase;
 import lombok.Builder;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,7 @@ public class UpdateAlbumFactory {
     @Bean("UpdateAlbumUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public UpdateAlbumUsecase create() {
-        return UpdateAlbumUsecaseImpl.builder()
+        return UpdateAlbumUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .albumDataProvider(this.albumDataProvider)
             .build();

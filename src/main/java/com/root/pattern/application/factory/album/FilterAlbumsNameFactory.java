@@ -1,8 +1,7 @@
 package com.root.pattern.application.factory.album;
 
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
-import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumsNameUsecase;
-import com.root.pattern.domain.usecase.album.FilterAlbumsNameUsecaseImpl;
+import com.root.pattern.domain.usecase.album.FilterAlbumsNameUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,7 @@ public class FilterAlbumsNameFactory {
     @Bean("FilterAlbumsNameUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public FilterAlbumsNameUsecase create() {
-        return FilterAlbumsNameUsecaseImpl.builder()
+        return FilterAlbumsNameUsecase.builder()
             .albumDataProvider(this.albumDataProvider)
             .build();
     }

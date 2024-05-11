@@ -2,8 +2,7 @@ package com.root.pattern.application.factory.playlist;
 
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.playlist.GetPlaylistUsecase;
-import com.root.pattern.domain.usecase.playlist.GetPlaylistUsecaseImpl;
+import com.root.pattern.domain.usecase.playlist.GetPlaylistUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,7 @@ public class GetPlaylistFactory {
     @Bean("GetPlaylistUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public GetPlaylistUsecase create() {
-        return GetPlaylistUsecaseImpl.builder()
+        return GetPlaylistUsecase.builder()
             .playlistDataProvider(this.playlistDataProvider)
             .playlistMusicDataProvider(this.playlistMusicDataProvider)
             .build();

@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.musician;
 
 import com.root.pattern.adapter.repository.MusicianDataProviderImpl;
-import com.root.pattern.domain.usecase.musician.AuthMusicianUsecaseImpl;
+import com.root.pattern.domain.usecase.musician.AuthMusicianUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,8 @@ public class AuthMusicianFactory {
 
     @Bean("AuthMusicianUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public AuthMusicianUsecaseImpl create() {
-        return AuthMusicianUsecaseImpl.builder()
+    public AuthMusicianUsecase create() {
+        return AuthMusicianUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .passwordEncoder(this.passwordEncoder)
             .build();

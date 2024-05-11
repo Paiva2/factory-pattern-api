@@ -1,9 +1,8 @@
 package com.root.pattern.application.factory.album;
 
-import com.root.pattern.domain.interfaces.usecase.album.CreateAlbumUsecase;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.usecase.album.CreateAlbumUsecaseImpl;
+import com.root.pattern.domain.usecase.album.CreateAlbumUsecase;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +18,7 @@ public class CreateAlbumFactory {
     @Bean("CreateAlbumUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public CreateAlbumUsecase create() {
-        return CreateAlbumUsecaseImpl.builder()
+        return CreateAlbumUsecase.builder()
             .albumDataProvider(this.albumDataProvider)
             .musicianDataProvider(this.musicianDataProvider)
             .build();

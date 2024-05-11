@@ -4,8 +4,7 @@ import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.music.InsertMusicOnPlaylistUsecase;
-import com.root.pattern.domain.usecase.playlist.InsertMusicOnPlaylistUsecaseImpl;
+import com.root.pattern.domain.usecase.playlist.InsertMusicOnPlaylistUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +22,7 @@ public class InsertMusicOnPlaylistFactory {
     @Bean("InsertMusicOnPlaylistUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public InsertMusicOnPlaylistUsecase create() {
-        return InsertMusicOnPlaylistUsecaseImpl.builder()
+        return InsertMusicOnPlaylistUsecase.builder()
             .musicDataProvider(this.musicDataProvider)
             .userDataProvider(this.userDataProvider)
             .playlistDataProvider(this.playlistDataProvider)

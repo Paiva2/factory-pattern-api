@@ -1,8 +1,7 @@
 package com.root.pattern.application.factory.music;
 
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.music.FilterOneMusicUsecase;
-import com.root.pattern.domain.usecase.music.FilterOneMusicUsecaseImpl;
+import com.root.pattern.domain.usecase.music.FilterOneMusicUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,7 @@ public class FilterOneMusicFactory {
     @Bean("FilterOneMusicUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public FilterOneMusicUsecase create() {
-        return FilterOneMusicUsecaseImpl.builder()
+        return FilterOneMusicUsecase.builder()
             .musicDataProvider(this.musicDataProvider)
             .build();
     }

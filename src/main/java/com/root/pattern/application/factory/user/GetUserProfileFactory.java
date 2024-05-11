@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.user;
 
 import com.root.pattern.adapter.repository.UserDataProviderImpl;
-import com.root.pattern.domain.usecase.user.GetUserProfileUsecaseImpl;
+import com.root.pattern.domain.usecase.user.GetUserProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +15,9 @@ public class GetUserProfileFactory {
 
     @Bean("GetUserProfileUseCase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public GetUserProfileUsecaseImpl create() {
-        return GetUserProfileUsecaseImpl.builder()
-                .userDataProvider(this.userDataProvider)
-                .build();
+    public GetUserProfileUsecase create() {
+        return GetUserProfileUsecase.builder()
+            .userDataProvider(this.userDataProvider)
+            .build();
     }
 }

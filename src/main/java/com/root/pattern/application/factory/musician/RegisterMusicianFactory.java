@@ -3,7 +3,7 @@ package com.root.pattern.application.factory.musician;
 import com.root.pattern.adapter.repository.MusicianDataProviderImpl;
 import com.root.pattern.domain.strategy.concrete.EmailValidatorRegexStrategy;
 import com.root.pattern.domain.strategy.context.MailValidator;
-import com.root.pattern.domain.usecase.musician.RegisterMusicianUsecaseImpl;
+import com.root.pattern.domain.usecase.musician.RegisterMusicianUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +21,8 @@ public class RegisterMusicianFactory {
 
     @Bean("RegisterMusicianUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public RegisterMusicianUsecaseImpl create() {
-        return RegisterMusicianUsecaseImpl.builder()
+    public RegisterMusicianUsecase create() {
+        return RegisterMusicianUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .passwordEncoder(this.passwordEncoder)
             .mailValidator(this.mailValidatorStrategy())

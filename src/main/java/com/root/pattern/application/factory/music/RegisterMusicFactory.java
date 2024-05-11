@@ -4,7 +4,7 @@ import com.root.pattern.adapter.repository.AlbumDataProviderImpl;
 import com.root.pattern.adapter.repository.CategoryDataProviderImpl;
 import com.root.pattern.adapter.repository.MusicDataProviderImpl;
 import com.root.pattern.adapter.repository.MusicianDataProviderImpl;
-import com.root.pattern.domain.usecase.music.RegisterMusicUsecaseImpl;
+import com.root.pattern.domain.usecase.music.RegisterMusicUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +21,8 @@ public class RegisterMusicFactory {
 
     @Bean("RegisterMusicUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public RegisterMusicUsecaseImpl create() {
-        return RegisterMusicUsecaseImpl.builder()
+    public RegisterMusicUsecase create() {
+        return RegisterMusicUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .albumDataProvider(this.albumDataProvider)
             .categoryDataProvider(this.categoryDataProvider)

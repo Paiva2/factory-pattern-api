@@ -2,7 +2,7 @@ package com.root.pattern.adapter.controller.musician;
 
 import com.root.pattern.adapter.dto.musician.*;
 import com.root.pattern.adapter.utils.JwtHandler;
-import com.root.pattern.domain.interfaces.usecase.musician.*;
+import com.root.pattern.domain.usecase.musician.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

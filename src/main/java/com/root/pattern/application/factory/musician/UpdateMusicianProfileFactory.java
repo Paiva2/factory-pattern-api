@@ -1,12 +1,11 @@
 package com.root.pattern.application.factory.musician;
 
 import com.root.pattern.adapter.repository.MusicianDataProviderImpl;
-import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
 import com.root.pattern.domain.strategy.concrete.CopyPropertiesBeanUtilStrategy;
 import com.root.pattern.domain.strategy.concrete.EmailValidatorRegexStrategy;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import com.root.pattern.domain.strategy.context.PropertiesCopier;
-import com.root.pattern.domain.usecase.musician.UpdateMusicianProfileUsecaseImpl;
+import com.root.pattern.domain.usecase.musician.UpdateMusicianProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -27,8 +26,8 @@ public class UpdateMusicianProfileFactory {
 
     @Bean("UpdateMusicianProfileUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public UpdateMusicianProfileUsecaseImpl create() {
-        return UpdateMusicianProfileUsecaseImpl.builder()
+    public UpdateMusicianProfileUsecase create() {
+        return UpdateMusicianProfileUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .mailValidator(this.mailValidatorStrategy())
             .propertiesCopier(this.propertiesCopierStrategy())

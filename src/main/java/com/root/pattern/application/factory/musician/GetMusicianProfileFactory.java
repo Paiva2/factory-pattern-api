@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.musician;
 
 import com.root.pattern.adapter.repository.MusicianDataProviderImpl;
-import com.root.pattern.domain.usecase.musician.GetMusicianProfileUsecaseImpl;
+import com.root.pattern.domain.usecase.musician.GetMusicianProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +15,8 @@ public class GetMusicianProfileFactory {
 
     @Bean("GetMusicianProfileUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public GetMusicianProfileUsecaseImpl create() {
-        return GetMusicianProfileUsecaseImpl.builder()
+    public GetMusicianProfileUsecase create() {
+        return GetMusicianProfileUsecase.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .build();
     }
