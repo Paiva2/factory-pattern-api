@@ -72,4 +72,9 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public void decreaseAllOrderFromMusicOnAlbum(UUID albumId, Integer decreaseValue, Long musicAlbumOrderRemoved) {
         this.musicRepository.decreaseAllNumberAlbumMusicOrder(albumId, decreaseValue, musicAlbumOrderRemoved);
     }
+
+    @Override
+    public void updateOrderToFitNewOneOnAlbum(Long musicNewOrder, Long musicOldOrder, UUID albumId) {
+        this.musicRepository.updateOrderToFitNewOneOnAlbum(musicNewOrder, musicOldOrder, albumId);
+    }
 }

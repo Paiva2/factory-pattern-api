@@ -30,4 +30,6 @@ public interface MusicDataProvider {
     Optional<Music> findByAlbum(UUID albumId, UUID musicId);
 
     void decreaseAllOrderFromMusicOnAlbum(UUID albumId, Integer decreaseValue, Long musicAlbumOrderRemoved);
+
+    void updateOrderToFitNewOneOnAlbum(Long musicNewOrder, Long musicOldOrder, UUID albumId);
 }

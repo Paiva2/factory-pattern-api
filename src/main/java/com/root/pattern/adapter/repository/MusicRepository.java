@@ -114,4 +114,15 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         @Param("decreaseValue") Integer decreaseValue,
         @Param("musicAlbumOrderRemoved") Long musicAlbumOrderRemoved
     );
+
+    @Modifying
+    @Query("UPDATE Music msc " +
+        "SET msc.albumOrder = CAST(:musicOldOrder as integer) " +
+        "WHERE msc.album.id = :albumId " +
+        "AND msc.albumOrder = CAST(:musicNewOrder as integer)")
+    void updateOrderToFitNewOneOnAlbum(
+        @Param("musicNewOrder") Long musicNewOrder,
+        @Param("musicOldOrder") Long musicOldOrder,
+        @Param("albumId") UUID albumId
+    );
 }

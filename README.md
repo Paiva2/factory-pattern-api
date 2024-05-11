@@ -55,5 +55,5 @@
 - [x] Remove music from an album (may be a single).
 - [x] Get an music;
 - [x] Get all own musics;
-- [ ] Edit an music (name, category, duration, order)
+- [x] Edit an music (name, category, duration, order)
 - [x] Disable an music;

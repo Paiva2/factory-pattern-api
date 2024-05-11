@@ -57,4 +57,11 @@ public interface MusicController {
         Authentication authentication,
         UUID musicId
     );
+
+    @PatchMapping("/{musicId}")
+    ResponseEntity<MusicOutputDTO> update(
+        Authentication authentication,
+        UUID musicId,
+        UpdateMusicInputDTO dto
+    );
 }

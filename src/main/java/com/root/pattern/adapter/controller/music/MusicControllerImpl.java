@@ -27,6 +27,7 @@ public class MusicControllerImpl implements MusicController {
     private final DisableMusicUsecase disableMusicUsecase;
     private final InsertMusicOnAlbumUsecase insertMusicOnAlbumUsecase;
     private final RemoveMusicFromAlbumUsecase removeMusicFromAlbumUsecase;
+    private final UpdateMusicUsecase updateMusicUsecase;
 
     @Override
     public ResponseEntity<NewMusicOutputDTO> register(
@@ -115,5 +116,17 @@ public class MusicControllerImpl implements MusicController {
         MusicOutputDTO output = this.removeMusicFromAlbumUsecase.exec(musicianId, musicId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
+    }
+
+    @Override
+    public ResponseEntity<MusicOutputDTO> update(
+        Authentication authentication,
+        @PathVariable("musicId") UUID musicId,
+        @RequestBody @Valid UpdateMusicInputDTO dto
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        MusicOutputDTO output = this.updateMusicUsecase.exec(musicianId, dto.toEntity(musicId));
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
     }
 }

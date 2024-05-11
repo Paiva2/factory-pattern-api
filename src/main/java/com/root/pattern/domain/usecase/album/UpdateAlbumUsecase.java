@@ -62,13 +62,13 @@ public class UpdateAlbumUsecase {
     }
 
     public void checkIfMusicianIsDisabled(Musician musician) {
-        if (musician.isDisabled()) {
+        if (musician.getDisabled()) {
             throw new ForbiddenException("Musician is disabled");
         }
     }
 
     public void checkIfAlbumIsDisabled(Album album) {
-        if (album.isDisabled()) {
+        if (album.getDisabled()) {
             throw new ForbiddenException("Album is disabled");
         }
     }
