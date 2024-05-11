@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces.usecase;
+package com.root.pattern.domain.interfaces.usecase.musician;
 
 import com.root.pattern.adapter.dto.musician.MusicianOutputDTO;
 import com.root.pattern.domain.entity.Musician;

@@ -7,7 +7,7 @@ import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.AuthenticateUserUsecase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,21 +38,21 @@ class AuthenticateUserUsecaseTest {
     @BeforeEach
     void setup() {
         this.sut = AuthenticateUserUsecaseImpl.builder()
-                .userDataProvider(this.userDataProvider)
-                .passwordEncoder(this.passwordEncoder)
-                .build();
+            .userDataProvider(this.userDataProvider)
+            .passwordEncoder(this.passwordEncoder)
+            .build();
 
         when(this.passwordEncoder.encode("any_password")).thenReturn("hashed_password");
         when(this.passwordEncoder.matches("any_password", "any_hashed_password")).thenReturn(true);
 
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .password("any_hashed_password")
-                .role(Role.USER)
-                .createdAt(Date.from(Instant.now()))
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .password("any_hashed_password")
+            .role(Role.USER)
+            .createdAt(Date.from(Instant.now()))
+            .build();
 
         when(userDataProvider.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
     }
@@ -60,13 +60,13 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldNotAuthenticateUserWithoutEmailProvided() {
         User user = User.builder()
-                .id(1L)
-                .email(null)
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(false)
-                .build();
+            .id(1L)
+            .email(null)
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(false)
+            .build();
 
         Exception exception = Assertions.assertThrows(BadRequestException.class, () -> {
             this.sut.exec(user);
@@ -78,13 +78,13 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldNotAuthenticateUserWithoutPasswordProvided() {
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .role(Role.USER)
-                .password(null)
-                .disabled(false)
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .role(Role.USER)
+            .password(null)
+            .disabled(false)
+            .build();
 
         Exception exception = Assertions.assertThrows(BadRequestException.class, () -> {
             this.sut.exec(user);
@@ -96,13 +96,13 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldNotAuthenticateUserIfUserDontExists() {
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(false)
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(false)
+            .build();
 
         when(userDataProvider.findByEmail(user.getEmail())).thenReturn(Optional.empty());
 
@@ -116,14 +116,14 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldNotAuthenticateUserIfUserIsDisabled() {
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(true)
-                .disabledAt(Date.from(Instant.now()))
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(true)
+            .disabledAt(Date.from(Instant.now()))
+            .build();
 
         Exception exception = Assertions.assertThrows(ForbiddenException.class, () -> {
             this.sut.exec(user);
@@ -135,13 +135,13 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldNotAuthenticateUserIfCredentialsAreWrong() {
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(true)
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(true)
+            .build();
 
         when(passwordEncoder.matches("any_password", "any_hashed_password")).thenReturn(false);
 
@@ -155,22 +155,22 @@ class AuthenticateUserUsecaseTest {
     @Test
     void shouldAuthenticateUserCorrectlyIfNothingGoesWrong() {
         User user = User.builder()
-                .id(1L)
-                .email("any_email@email.com")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(true)
-                .build();
+            .id(1L)
+            .email("any_email@email.com")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(true)
+            .build();
 
         UserOutputDTO sutOutput = this.sut.exec(user);
 
         Assertions.assertAll("Output Assertions",
-                () -> Assertions.assertEquals(sutOutput.getId(), user.getId()),
-                () -> Assertions.assertEquals(sutOutput.getEmail(), user.getEmail()),
-                () -> Assertions.assertEquals(sutOutput.getName(), user.getName()),
-                () -> Assertions.assertEquals(sutOutput.getRole(), user.getRole()),
-                () -> Assertions.assertNotNull(sutOutput.getCreatedAt())
+            () -> Assertions.assertEquals(sutOutput.getId(), user.getId()),
+            () -> Assertions.assertEquals(sutOutput.getEmail(), user.getEmail()),
+            () -> Assertions.assertEquals(sutOutput.getName(), user.getName()),
+            () -> Assertions.assertEquals(sutOutput.getRole(), user.getRole()),
+            () -> Assertions.assertNotNull(sutOutput.getCreatedAt())
         );
     }
 }

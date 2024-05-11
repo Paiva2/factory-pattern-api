@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces.usecase;
+package com.root.pattern.domain.interfaces.usecase.album;
 
 import com.root.pattern.adapter.dto.album.ListAllAlbumsOutputDTO;
 import com.root.pattern.domain.entity.Album;

@@ -2,6 +2,7 @@ package com.root.pattern.application.factory.album;
 
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
+import com.root.pattern.domain.interfaces.usecase.musician.ListMusicianAlbumsUsecase;
 import com.root.pattern.domain.usecase.album.ListMusicianAlbumsUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -17,7 +18,7 @@ public class ListMusicianAlbumsFactory {
 
     @Bean("ListMusicianAlbumsFactory")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public com.root.pattern.domain.interfaces.usecase.ListMusicianAlbumsUsecase create() {
+    public ListMusicianAlbumsUsecase create() {
         return ListMusicianAlbumsUsecaseImpl.builder()
             .musicianDataProvider(this.musicianDataProvider)
             .albumDataProvider(this.albumDataProvider)

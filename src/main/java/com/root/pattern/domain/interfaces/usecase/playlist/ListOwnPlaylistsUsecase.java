@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces.usecase;
+package com.root.pattern.domain.interfaces.usecase.playlist;
 
 import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.domain.entity.Playlist;

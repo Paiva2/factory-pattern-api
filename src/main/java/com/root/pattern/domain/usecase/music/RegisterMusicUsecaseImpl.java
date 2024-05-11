@@ -13,7 +13,7 @@ import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.CategoryDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.RegisterMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.RegisterMusicUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

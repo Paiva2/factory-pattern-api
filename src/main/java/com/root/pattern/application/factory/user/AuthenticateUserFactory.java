@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.user;
 
 import com.root.pattern.adapter.repository.UserDataProviderImpl;
-import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.AuthenticateUserUsecase;
 import com.root.pattern.domain.usecase.user.AuthenticateUserUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -20,8 +20,8 @@ public class AuthenticateUserFactory {
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public AuthenticateUserUsecase create() {
         return AuthenticateUserUsecaseImpl.builder()
-                .userDataProvider(this.userDataProvider)
-                .passwordEncoder(passwordEncoder)
-                .build();
+            .userDataProvider(this.userDataProvider)
+            .passwordEncoder(passwordEncoder)
+            .build();
     }
 }

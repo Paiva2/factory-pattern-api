@@ -8,7 +8,7 @@ import com.root.pattern.adapter.dto.musician.MusicianOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicsNameUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicsNameUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.data.domain.Page;

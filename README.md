@@ -48,6 +48,6 @@
 - [ ] Insert existing music on album;
 - [x] Get an music;
 - [x] Get all own musics;
-- [ ] Edit an music (name, category, duration, album)
+- [ ] Edit an music (name, category, duration, album, order)
 - [x] Disable an music;
 - [ ] Remove music from an album (may be a single).

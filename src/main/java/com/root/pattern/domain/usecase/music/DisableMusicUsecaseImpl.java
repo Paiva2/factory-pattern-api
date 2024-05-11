@@ -11,7 +11,7 @@ import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.DisableMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.DisableMusicUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

@@ -1,12 +1,12 @@
 package com.root.pattern.adapter.controller.album;
 
 import com.root.pattern.adapter.dto.album.*;
-import com.root.pattern.domain.interfaces.CreateAlbumUsecase;
-import com.root.pattern.domain.interfaces.UpdateAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.DisableAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
-import com.root.pattern.domain.interfaces.usecase.FilterAlbumsNameUsecase;
-import com.root.pattern.domain.interfaces.usecase.ListMusicianAlbumsUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.CreateAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.UpdateAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.DisableAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumsNameUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.ListMusicianAlbumsUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -90,7 +90,7 @@ public class AlbumControllerImpl implements AlbumController {
         @RequestBody @Valid UpdateAlbumInputDTO dto
     ) {
         Long musicianId = Long.valueOf(authentication.getName());
-        
+
         AlbumOutputDTO output = this.updateAlbumUsecase.exec(musicianId, dto.toEntity(albumId));
 
         return ResponseEntity.status(HttpStatus.OK).body(output);

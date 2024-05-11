@@ -6,7 +6,7 @@ import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.AuthenticateUserUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,7 +43,7 @@ public class AuthenticateUserUsecaseImpl implements AuthenticateUserUsecase {
 
     public User validateIfUserExists(String userEmail) {
         User getUser = this.userDataProvider.findByEmail(userEmail)
-                .orElseThrow(() -> new NotFoundException("User"));
+            .orElseThrow(() -> new NotFoundException("User"));
 
         return getUser;
     }
@@ -62,11 +62,11 @@ public class AuthenticateUserUsecaseImpl implements AuthenticateUserUsecase {
 
     public UserOutputDTO mountOutputDto(User user) {
         return UserOutputDTO.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .name(user.getName())
-                .role(user.getRole())
-                .createdAt(user.getCreatedAt())
-                .build();
+            .id(user.getId())
+            .email(user.getEmail())
+            .name(user.getName())
+            .role(user.getRole())
+            .createdAt(user.getCreatedAt())
+            .build();
     }
 }

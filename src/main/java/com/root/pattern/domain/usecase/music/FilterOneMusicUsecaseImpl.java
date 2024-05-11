@@ -8,7 +8,7 @@ import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterOneMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.FilterOneMusicUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

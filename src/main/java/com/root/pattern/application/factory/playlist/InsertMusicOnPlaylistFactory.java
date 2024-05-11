@@ -4,7 +4,7 @@ import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.InsertMusicOnPlaylistUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.InsertMusicOnPlaylistUsecase;
 import com.root.pattern.domain.usecase.playlist.InsertMusicOnPlaylistUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

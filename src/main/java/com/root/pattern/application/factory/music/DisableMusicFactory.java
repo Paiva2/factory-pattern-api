@@ -1,10 +1,9 @@
 package com.root.pattern.application.factory.music;
 
-import com.root.pattern.adapter.repository.PlaylistMusicRepository;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.DisableMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.DisableMusicUsecase;
 import com.root.pattern.domain.usecase.music.DisableMusicUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

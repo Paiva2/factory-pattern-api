@@ -8,7 +8,7 @@ import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

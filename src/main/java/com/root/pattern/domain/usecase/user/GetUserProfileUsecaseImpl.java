@@ -5,7 +5,7 @@ import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.GetUserProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.GetUserProfileUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

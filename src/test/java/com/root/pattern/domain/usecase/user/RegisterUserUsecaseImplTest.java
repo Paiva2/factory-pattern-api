@@ -6,7 +6,7 @@ import com.root.pattern.adapter.exceptions.ConflictException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.RegisterUserUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,25 +41,25 @@ class RegisterUserUsecaseImplTest {
 
     private User userBuilder() {
         return User.builder()
-                .id(1L)
-                .email("any_email")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(false)
-                .disabledAt(Date.from(Instant.now()))
-                .createdAt(Date.from(Instant.now()))
-                .build();
+            .id(1L)
+            .email("any_email")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(false)
+            .disabledAt(Date.from(Instant.now()))
+            .createdAt(Date.from(Instant.now()))
+            .build();
     }
 
     @BeforeEach
     void setup() {
         this.sut = RegisterUserUsecaseImpl
-                .builder()
-                .passwordEncoder(this.passwordEncoder)
-                .userDataProvider(this.userDataProvider)
-                .mailValidator(this.mailValidator)
-                .build();
+            .builder()
+            .passwordEncoder(this.passwordEncoder)
+            .userDataProvider(this.userDataProvider)
+            .mailValidator(this.mailValidator)
+            .build();
 
         when(this.passwordEncoder.encode("any_password")).thenReturn("hashed_password");
         when(this.passwordEncoder.matches("any_password", "any_hashed_password")).thenReturn(true);
@@ -71,14 +71,14 @@ class RegisterUserUsecaseImplTest {
     @Test
     void shouldCallSutOnce() {
         User newUser = User.builder()
-                .id(1L)
-                .email("any_email")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(false)
-                .disabledAt(Date.from(Instant.now()))
-                .build();
+            .id(1L)
+            .email("any_email")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(false)
+            .disabledAt(Date.from(Instant.now()))
+            .build();
 
         RegisterUserUsecase sutMock = mock(RegisterUserUsecaseImpl.class);
         sutMock.exec(newUser);
@@ -149,14 +149,14 @@ class RegisterUserUsecaseImplTest {
     @Test
     void shouldNotRegisterIfUserAlreadyExists() {
         User newUser = User.builder()
-                .id(1L)
-                .email("any_email")
-                .name("any_name")
-                .role(Role.USER)
-                .password("any_password")
-                .disabled(false)
-                .disabledAt(Date.from(Instant.now()))
-                .build();
+            .id(1L)
+            .email("any_email")
+            .name("any_name")
+            .role(Role.USER)
+            .password("any_password")
+            .disabled(false)
+            .disabledAt(Date.from(Instant.now()))
+            .build();
 
         when(userDataProvider.findByEmail("any_email")).thenReturn(Optional.ofNullable(newUser));
 
@@ -182,11 +182,11 @@ class RegisterUserUsecaseImplTest {
         UserOutputDTO sutOutput = this.sut.exec(user);
 
         Assertions.assertAll("Output Assertions",
-                () -> Assertions.assertEquals(user.getEmail(), sutOutput.getEmail()),
-                () -> Assertions.assertEquals(user.getId(), sutOutput.getId()),
-                () -> Assertions.assertEquals(user.getRole(), sutOutput.getRole()),
-                () -> Assertions.assertEquals(user.getName(), sutOutput.getName()),
-                () -> Assertions.assertInstanceOf(Date.class, sutOutput.getCreatedAt())
+            () -> Assertions.assertEquals(user.getEmail(), sutOutput.getEmail()),
+            () -> Assertions.assertEquals(user.getId(), sutOutput.getId()),
+            () -> Assertions.assertEquals(user.getRole(), sutOutput.getRole()),
+            () -> Assertions.assertEquals(user.getName(), sutOutput.getName()),
+            () -> Assertions.assertInstanceOf(Date.class, sutOutput.getCreatedAt())
         );
     }
 }

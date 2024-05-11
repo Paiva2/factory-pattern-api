@@ -1,6 +1,6 @@
 package com.root.pattern.application.factory.album;
 
-import com.root.pattern.domain.interfaces.UpdateAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.UpdateAlbumUsecase;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
 import com.root.pattern.domain.usecase.album.UpdateAlbumUsecaseImpl;

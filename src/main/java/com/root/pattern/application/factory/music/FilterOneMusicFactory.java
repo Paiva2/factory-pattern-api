@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.music;
 
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterOneMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.FilterOneMusicUsecase;
 import com.root.pattern.domain.usecase.music.FilterOneMusicUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

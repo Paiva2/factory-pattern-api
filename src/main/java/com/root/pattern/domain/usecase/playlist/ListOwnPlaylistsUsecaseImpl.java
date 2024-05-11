@@ -9,7 +9,7 @@ import com.root.pattern.domain.entity.Playlist;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.ListOwnPlaylistsUsecase;
+import com.root.pattern.domain.interfaces.usecase.playlist.ListOwnPlaylistsUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

@@ -2,7 +2,7 @@ package com.root.pattern.application.factory.playlist;
 
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.GetPlaylistUsecase;
+import com.root.pattern.domain.interfaces.usecase.playlist.GetPlaylistUsecase;
 import com.root.pattern.domain.usecase.playlist.GetPlaylistUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

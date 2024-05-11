@@ -8,7 +8,7 @@ import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.UpdateUserProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.UpdateUserProfileUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import com.root.pattern.domain.strategy.context.PropertiesCopier;
 import org.junit.jupiter.api.Assertions;

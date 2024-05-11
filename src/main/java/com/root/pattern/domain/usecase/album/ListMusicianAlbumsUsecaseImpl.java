@@ -9,7 +9,7 @@ import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.ListMusicianAlbumsUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.ListMusicianAlbumsUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.data.domain.Page;

@@ -2,7 +2,7 @@ package com.root.pattern.application.factory.music;
 
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicianMusicsUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicianMusicsUsecase;
 import com.root.pattern.domain.usecase.music.FilterMusicianMusicsUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

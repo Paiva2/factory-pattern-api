@@ -5,7 +5,7 @@ import com.root.pattern.adapter.dto.album.ListAllAlbumsOutputDTO;
 import com.root.pattern.adapter.exceptions.BadRequestException;
 import com.root.pattern.domain.entity.Album;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterAlbumsNameUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumsNameUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.data.domain.Page;

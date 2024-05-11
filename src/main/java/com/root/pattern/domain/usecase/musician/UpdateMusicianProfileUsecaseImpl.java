@@ -7,7 +7,7 @@ import com.root.pattern.adapter.exceptions.ForbiddenException;
 import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.UpdateMusicianProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.UpdateMusicianProfileUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import com.root.pattern.domain.strategy.context.PropertiesCopier;
 import lombok.AllArgsConstructor;

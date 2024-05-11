@@ -3,7 +3,7 @@ package com.root.pattern.application.factory.album;
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.DisableAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.DisableAlbumUsecase;
 import com.root.pattern.domain.usecase.album.DisableAlbumUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

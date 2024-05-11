@@ -6,7 +6,7 @@ import com.root.pattern.adapter.exceptions.ConflictException;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.RegisterMusicianUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.RegisterMusicianUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -7,7 +7,7 @@ import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.GetMusicianProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.GetMusicianProfileUsecase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

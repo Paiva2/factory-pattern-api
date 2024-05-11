@@ -2,10 +2,10 @@ package com.root.pattern.adapter.controller.user;
 
 import com.root.pattern.adapter.dto.user.*;
 import com.root.pattern.adapter.utils.JwtHandler;
-import com.root.pattern.domain.interfaces.usecase.AuthenticateUserUsecase;
-import com.root.pattern.domain.interfaces.usecase.GetUserProfileUsecase;
-import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
-import com.root.pattern.domain.interfaces.usecase.UpdateUserProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.AuthenticateUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.GetUserProfileUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.RegisterUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.UpdateUserProfileUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

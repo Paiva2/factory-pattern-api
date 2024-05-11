@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces.usecase;
+package com.root.pattern.domain.interfaces.usecase.music;
 
 import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.entity.Playlist;

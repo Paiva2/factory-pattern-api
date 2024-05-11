@@ -1,4 +1,4 @@
-package com.root.pattern.domain.interfaces.usecase;
+package com.root.pattern.domain.interfaces.usecase.user;
 
 import com.root.pattern.adapter.dto.user.UserOutputDTO;
 import com.root.pattern.domain.entity.User;
@@ -13,7 +13,7 @@ public interface UpdateUserProfileUsecase {
     void checkIfEmailAlreadyExists(String newEmail, User user);
 
     User checkIfUserExists(Long id);
-    
+
     UserOutputDTO mountOutput(User user);
 
     String hashNewPassword(String password);

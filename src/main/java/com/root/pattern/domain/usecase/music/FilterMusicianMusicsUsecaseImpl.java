@@ -12,7 +12,7 @@ import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicianMusicsUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicianMusicsUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.data.domain.Page;

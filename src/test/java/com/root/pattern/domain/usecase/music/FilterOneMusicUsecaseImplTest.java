@@ -9,7 +9,7 @@ import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.enums.MusicCategory;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterOneMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.FilterOneMusicUsecase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

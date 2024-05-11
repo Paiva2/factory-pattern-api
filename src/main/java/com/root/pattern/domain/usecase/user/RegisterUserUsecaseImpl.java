@@ -6,7 +6,7 @@ import com.root.pattern.adapter.exceptions.ConflictException;
 import com.root.pattern.domain.entity.User;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.UserDataProvider;
-import com.root.pattern.domain.interfaces.usecase.RegisterUserUsecase;
+import com.root.pattern.domain.interfaces.usecase.user.RegisterUserUsecase;
 import com.root.pattern.domain.strategy.context.MailValidator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -60,7 +60,7 @@ public class RegisterUserUsecaseImpl implements RegisterUserUsecase {
 
     public void validateIfUserAlreadyExists(User user) {
         Optional<User> doesUserAlreadyExists = this.userDataProvider.findByEmail(
-                user.getEmail()
+            user.getEmail()
         );
 
         if (doesUserAlreadyExists.isPresent()) {
@@ -74,11 +74,11 @@ public class RegisterUserUsecaseImpl implements RegisterUserUsecase {
 
     public UserOutputDTO mountOutputDto(User user) {
         return UserOutputDTO.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .name(user.getName())
-                .role(user.getRole())
-                .createdAt(user.getCreatedAt())
-                .build();
+            .id(user.getId())
+            .email(user.getEmail())
+            .name(user.getName())
+            .role(user.getRole())
+            .createdAt(user.getCreatedAt())
+            .build();
     }
 }

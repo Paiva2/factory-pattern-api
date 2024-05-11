@@ -2,12 +2,11 @@ package com.root.pattern.adapter.controller.musician;
 
 import com.root.pattern.adapter.dto.musician.*;
 import com.root.pattern.adapter.utils.JwtHandler;
-import com.root.pattern.domain.interfaces.usecase.*;
+import com.root.pattern.domain.interfaces.usecase.musician.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

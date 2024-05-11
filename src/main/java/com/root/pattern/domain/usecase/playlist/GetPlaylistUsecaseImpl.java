@@ -11,7 +11,7 @@ import com.root.pattern.adapter.exceptions.NotFoundException;
 import com.root.pattern.domain.entity.Playlist;
 import com.root.pattern.domain.interfaces.repository.PlaylistDataProvider;
 import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
-import com.root.pattern.domain.interfaces.usecase.GetPlaylistUsecase;
+import com.root.pattern.domain.interfaces.usecase.playlist.GetPlaylistUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 

@@ -1,7 +1,7 @@
 package com.root.pattern.application.factory.album;
 
 import com.root.pattern.domain.interfaces.repository.AlbumDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterAlbumUsecase;
+import com.root.pattern.domain.interfaces.usecase.album.FilterAlbumUsecase;
 import com.root.pattern.domain.usecase.album.FilterAlbumUsecaseImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

@@ -12,7 +12,7 @@ import com.root.pattern.domain.enums.MusicCategory;
 import com.root.pattern.domain.enums.Role;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
-import com.root.pattern.domain.interfaces.usecase.FilterMusicianMusicsUsecase;
+import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicianMusicsUsecase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
