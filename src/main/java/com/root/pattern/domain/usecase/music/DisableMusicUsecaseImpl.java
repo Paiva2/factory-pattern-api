@@ -10,10 +10,12 @@ import com.root.pattern.domain.entity.Music;
 import com.root.pattern.domain.entity.Musician;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
+import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
 import com.root.pattern.domain.interfaces.usecase.DisableMusicUsecase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -23,7 +25,9 @@ import java.util.UUID;
 public class DisableMusicUsecaseImpl implements DisableMusicUsecase {
     private final MusicianDataProvider musicianDataProvider;
     private final MusicDataProvider musicDataProvider;
+    private final PlaylistMusicDataProvider playlistMusicDataProvider;
 
+    @Transactional
     @Override
     public MusicOutputDTO exec(Long musicianId, UUID musicId) {
         this.inputValidations(musicianId, musicId);
@@ -87,6 +91,8 @@ public class DisableMusicUsecaseImpl implements DisableMusicUsecase {
 
     @Override
     public Music disableMusic(Music music) {
+        this.playlistMusicDataProvider.disableAllByMusicId(music.getId());
+
         music.setDisabled(true);
 
         return this.musicDataProvider.register(music);
@@ -99,6 +105,8 @@ public class DisableMusicUsecaseImpl implements DisableMusicUsecase {
             .name(music.getName())
             .isSingle(music.isSingle())
             .duration(music.getDuration())
+            .disabled(music.isDisabled())
+            .order(Objects.nonNull(music.getAlbumOrder()) ? Math.toIntExact(music.getAlbumOrder()) : null)
             .category(CategoryOutputDTO.builder().id(music.getCategory().getId()).name(music.getCategory().getName().name()).build())
             .createdAt(music.getCreatedAt())
             .build();

@@ -1,7 +1,9 @@
 package com.root.pattern.application.factory.music;
 
+import com.root.pattern.adapter.repository.PlaylistMusicRepository;
 import com.root.pattern.domain.interfaces.repository.MusicDataProvider;
 import com.root.pattern.domain.interfaces.repository.MusicianDataProvider;
+import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
 import com.root.pattern.domain.interfaces.usecase.DisableMusicUsecase;
 import com.root.pattern.domain.usecase.music.DisableMusicUsecaseImpl;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 public class DisableMusicFactory {
     private final MusicianDataProvider musicianDataProvider;
     private final MusicDataProvider musicDataProvider;
+    private final PlaylistMusicDataProvider playlistMusicDataProvider;
 
     @Bean("DisableMusicUsecase")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -22,6 +25,7 @@ public class DisableMusicFactory {
         return DisableMusicUsecaseImpl.builder()
             .musicDataProvider(this.musicDataProvider)
             .musicianDataProvider(this.musicianDataProvider)
+            .playlistMusicDataProvider(this.playlistMusicDataProvider)
             .build();
     }
 }
