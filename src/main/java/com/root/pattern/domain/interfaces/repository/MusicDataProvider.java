@@ -26,4 +26,6 @@ public interface MusicDataProvider {
     Long findAllFromMusicianCount(Long musicianId, String name, String albumName);
 
     Long findLastMusicOnAlbumOrder(Long musicianId, UUID albumId);
+
+    Optional<Music> findByAlbum(UUID albumId, UUID musicId);
 }

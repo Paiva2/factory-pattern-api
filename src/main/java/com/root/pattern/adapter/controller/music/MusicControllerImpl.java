@@ -1,10 +1,7 @@
 package com.root.pattern.adapter.controller.music;
 
 import com.root.pattern.adapter.dto.music.*;
-import com.root.pattern.domain.interfaces.usecase.music.DisableMusicUsecase;
-import com.root.pattern.domain.interfaces.usecase.music.FilterOneMusicUsecase;
-import com.root.pattern.domain.interfaces.usecase.music.GetAllOwnMusicsUsecase;
-import com.root.pattern.domain.interfaces.usecase.music.RegisterMusicUsecase;
+import com.root.pattern.domain.interfaces.usecase.music.*;
 import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicianMusicsUsecase;
 import com.root.pattern.domain.interfaces.usecase.musician.FilterMusicsNameUsecase;
 import lombok.AllArgsConstructor;
@@ -28,6 +25,7 @@ public class MusicControllerImpl implements MusicController {
     private final FilterMusicianMusicsUsecase filterMusicianMusicsUsecase;
     private final GetAllOwnMusicsUsecase getAllOwnMusicsUsecase;
     private final DisableMusicUsecase disableMusicUsecase;
+    private final InsertMusicOnAlbumUsecase insertMusicOnAlbumUsecase;
 
     @Override
     public ResponseEntity<NewMusicOutputDTO> register(
@@ -93,5 +91,17 @@ public class MusicControllerImpl implements MusicController {
         MusicOutputDTO output = this.disableMusicUsecase.exec(musicianId, musicId);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<MusicOutputDTO> insertOnAlbum(
+        Authentication authentication,
+        @PathVariable("musicId") UUID musicId,
+        @PathVariable("albumId") UUID albumId
+    ) {
+        Long musicianId = Long.valueOf(authentication.getName());
+        MusicOutputDTO output = this.insertMusicOnAlbumUsecase.exec(musicianId, albumId, musicId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(output);
     }
 }

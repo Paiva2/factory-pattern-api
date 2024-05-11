@@ -62,4 +62,9 @@ public class MusicDataProviderImpl implements MusicDataProvider {
     public Long findLastMusicOnAlbumOrder(Long musicianId, UUID albumId) {
         return this.musicRepository.findLastOrderedByAlbum(musicianId, albumId);
     }
+
+    @Override
+    public Optional<Music> findByAlbum(UUID albumId, UUID musicId) {
+        return this.musicRepository.findByAlbumAndId(albumId, musicId);
+    }
 }

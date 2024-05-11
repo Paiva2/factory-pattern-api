@@ -44,4 +44,11 @@ public interface MusicController {
         Authentication authentication,
         UUID musicId
     );
+
+    @PostMapping("/{musicId}/insert/album/{albumId}")
+    ResponseEntity<MusicOutputDTO> insertOnAlbum(
+        Authentication authentication,
+        UUID musicId,
+        UUID albumId
+    );
 }

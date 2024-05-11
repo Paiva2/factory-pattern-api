@@ -81,4 +81,11 @@ public interface MusicRepository extends JpaRepository<Music, UUID> {
         "ORDER BY msc.MUS_ALBUM_ORDER DESC " +
         "LIMIT 1", nativeQuery = true)
     Long findLastOrderedByAlbum(@Param("musicianId") Long musicianId, @Param("albumId") UUID albumId);
+    
+    @Query("SELECT m FROM Music m " +
+        "JOIN FETCH m.album ma " +
+        "WHERE m.id = :musicId " +
+        "AND ma.id = :albumId " +
+        "AND m.disabled IS NOT TRUE")
+    Optional<Music> findByAlbumAndId(@Param("albumId") UUID albumId, @Param("musicId") UUID musicId);
 }
