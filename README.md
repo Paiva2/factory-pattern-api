@@ -14,10 +14,12 @@
 #### Authentication context
 
 - [x] Register as an user or musician;
+- [x] RBAC (Role-based access control)
+- [x] JWT Token Authentication strat;
 - [x] Login as an user or musician;
 - [x] Get profile as user;
 - [x] Get profile as musician;
-- [ ] Recover password;
+- [ ] Recover password receiving a new one on e-mail;
 - [x] Update profile as user or musician.
 
 #### User context
@@ -28,10 +30,13 @@
 - [x] List all musics on an album;
 - [x] Fetch for an specific musician/album/music;
 - [x] Fetch all albums from a musician;
+- [x] Fetch one album by its id and name;
 - [x] Fetch all albums by name;
 - [x] Fetch all musics by name;
-- [x] Insert musics on playlist;
-- [ ] Remove musics from playlist;
+- [x] Fetch one music by id;
+- [x] Insert musics on playlist and reorder;
+- [ ] Edit music order from playlist;
+- [ ] Remove musics from playlist and reorder;
 - [ ] Insert musics on favorite;
 - [ ] Remove musics from favorite;
 - [ ] Fetch for others playlist;
@@ -45,10 +50,10 @@
 - [x] Get an album;
 - [x] Get all own albums;
 - [x] Register a new music;
+- [x] Insert a new music on album;
 - [x] Insert existing music on album and reorder;
-- [x] Remove existing music from album and reorder;
+- [x] Remove music from an album (may be a single).
 - [x] Get an music;
 - [x] Get all own musics;
-- [ ] Edit an music (name, category, duration, album, order)
+- [ ] Edit an music (name, category, duration, order)
 - [x] Disable an music;
-- [ ] Remove music from an album (may be a single).
