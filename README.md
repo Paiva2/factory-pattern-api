@@ -30,7 +30,7 @@
 - [x] Fetch all albums from a musician;
 - [x] Fetch all albums by name;
 - [x] Fetch all musics by name;
-- [ ] Insert musics on playlist;
+- [x] Insert musics on playlist;
 - [ ] Remove musics from playlist;
 - [ ] Insert musics on favorite;
 - [ ] Remove musics from favorite;
