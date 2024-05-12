@@ -4,6 +4,7 @@ import com.root.pattern.adapter.dto.playlist.GetPlaylistOutputDTO;
 import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,4 +36,7 @@ public interface PlaylistController {
 
     @PostMapping("/{playlistId}/music/{musicId}")
     ResponseEntity<Void> newMusic(Authentication authentication, UUID playlistId, UUID musicId);
+
+    @GetMapping("/export/{playlistId}")
+    ResponseEntity<ByteArrayResource> export(UUID playlistId);
 }

@@ -3,13 +3,13 @@ package com.root.pattern.adapter.controller.playlist;
 import com.root.pattern.adapter.dto.playlist.GetPlaylistOutputDTO;
 import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
 import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
-import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;;
-import com.root.pattern.domain.usecase.playlist.CreateNewPlaylistUsecase;
-import com.root.pattern.domain.usecase.playlist.GetPlaylistUsecase;
-import com.root.pattern.domain.usecase.playlist.InsertMusicOnPlaylistUsecase;
-import com.root.pattern.domain.usecase.playlist.ListOwnPlaylistsUsecase;
+import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
+import com.root.pattern.domain.usecase.playlist.*;
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +27,7 @@ public class PlaylistControllerImpl implements PlaylistController {
     private final ListOwnPlaylistsUsecase listOwnPlaylistsUsecase;
     private final GetPlaylistUsecase getPlaylistUsecase;
     private final InsertMusicOnPlaylistUsecase insertMusicOnPlaylistUsecase;
+    private final ExportPlaylistExcelUsecase exportPlaylistExcelUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -71,5 +72,18 @@ public class PlaylistControllerImpl implements PlaylistController {
         this.insertMusicOnPlaylistUsecase.exec(userId, musicId, playlistId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @Override
+    public ResponseEntity<ByteArrayResource> export(
+        @PathVariable("playlistId") UUID playlistId
+    ) {
+        ByteArrayResource output = this.exportPlaylistExcelUsecase.exec(playlistId);
+
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("application", "force-download"));
+        header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Playlist-data.xlsx");
+
+        return ResponseEntity.status(200).headers(header).body(output);
     }
 }

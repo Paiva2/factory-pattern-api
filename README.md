@@ -41,6 +41,8 @@
 - [ ] Remove musics from favorite;
 - [ ] Fetch for others playlist;
 - [ ] Copy others playlist;
+- [x] Export Albums to Excel
+-
 
 #### Musician context
 

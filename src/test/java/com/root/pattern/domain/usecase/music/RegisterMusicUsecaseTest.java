@@ -265,7 +265,7 @@ class RegisterMusicUsecaseTest {
 
         Music musicCreatedMock = Music.builder()
             .id(musicDto.getId())
-            .isSingle(musicDto.isSingle())
+            .isSingle(musicDto.getIsSingle())
             .album(musicDto.getAlbum())
             .duration(musicDto.getDuration())
             .category(musicDto.getCategory())
@@ -286,7 +286,7 @@ class RegisterMusicUsecaseTest {
             () -> Assertions.assertEquals(musicCreatedMock.getDuration(), useCaseOutput.getDuration()),
             () -> Assertions.assertEquals(musicCreatedMock.getAlbum().getName(), useCaseOutput.getAlbumName()),
             () -> Assertions.assertEquals(musicCreatedMock.getCategory().getName().toString(), useCaseOutput.getCategoryName()),
-            () -> Assertions.assertEquals(musicCreatedMock.isSingle(), useCaseOutput.isSingle()),
+            () -> Assertions.assertEquals(musicCreatedMock.getIsSingle(), useCaseOutput.isSingle()),
             () -> Assertions.assertEquals(musicCreatedMock.getCreatedAt(), useCaseOutput.getCreatedAt())
         );
     }

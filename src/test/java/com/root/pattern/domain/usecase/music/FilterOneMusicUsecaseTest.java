@@ -108,7 +108,7 @@ class FilterOneMusicUsecaseTest {
         Assertions.assertAll("Sut output assertions",
             () -> Assertions.assertNotNull(outputSut.getId()),
             () -> Assertions.assertEquals("any_name_1", outputSut.getName()),
-            () -> Assertions.assertTrue(outputSut.isSingle()),
+            () -> Assertions.assertTrue(outputSut.getIsSingle()),
             () -> Assertions.assertEquals(2000L, outputSut.getDuration()),
             () -> Assertions.assertNotNull(outputSut.getCreatedAt()),
             () -> Assertions.assertNotNull(outputSut.getCategory().getId()),
