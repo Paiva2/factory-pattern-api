@@ -19,8 +19,8 @@ public class PlaylistMusicDataProviderimpl implements PlaylistMusicDataProvider 
     }
 
     @Override
-    public Long findLastMusicOrder(UUID playlistMusicId) {
-        return this.playlistMusicRepository.findLastMusicOrder(playlistMusicId);
+    public Long findLastMusicOrder(UUID playlistId) {
+        return this.playlistMusicRepository.findLastMusicOrder(playlistId);
     }
 
     @Override
@@ -31,5 +31,20 @@ public class PlaylistMusicDataProviderimpl implements PlaylistMusicDataProvider 
     @Override
     public Optional<PlaylistMusic> findByPlaylistAndMusic(UUID playlistId, UUID musicId) {
         return this.playlistMusicRepository.findByPlaylistAndMusic(playlistId, musicId);
+    }
+
+    @Override
+    public Optional<PlaylistMusic> findById(UUID id) {
+        return this.playlistMusicRepository.findById(id);
+    }
+
+    @Override
+    public void decreaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionBeingRemoved) {
+        this.playlistMusicRepository.decreaseAllOrderFromMusicOnPlaylist(playlistId, positionBeingRemoved);
+    }
+
+    @Override
+    public void delete(UUID playlistMusicId) {
+        this.playlistMusicRepository.deleteById(playlistMusicId);
     }
 }

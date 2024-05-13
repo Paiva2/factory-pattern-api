@@ -70,6 +70,7 @@ public class GetPlaylistUsecase {
                 PlaylistMusicOutputDTO.builder()
                     .id(playlistMusic.getId())
                     .createdAt(playlistMusic.getCreatedAt())
+                    .orderPlaylist(playlistMusic.getMusicPlaylistOrder())
                     .music(MusicOutputDTO.builder()
                         .id(playlistMusic.getMusic().getId())
                         .duration(playlistMusic.getMusic().getDuration())

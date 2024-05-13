@@ -14,5 +14,6 @@ import java.util.UUID;
 public class PlaylistMusicOutputDTO {
     private UUID id;
     private Date createdAt;
+    private Integer orderPlaylist;
     private MusicOutputDTO music;
 }

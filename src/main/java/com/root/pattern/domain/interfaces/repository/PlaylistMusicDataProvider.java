@@ -8,9 +8,15 @@ import java.util.UUID;
 public interface PlaylistMusicDataProvider {
     void disableAllByMusicId(UUID musicId);
 
-    Long findLastMusicOrder(UUID playlistMusic);
+    Long findLastMusicOrder(UUID playlistId);
 
     PlaylistMusic register(PlaylistMusic playlistMusic);
 
     Optional<PlaylistMusic> findByPlaylistAndMusic(UUID playlistId, UUID musicId);
+
+    Optional<PlaylistMusic> findById(UUID id);
+
+    void decreaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionBeingRemoved);
+
+    void delete(UUID playlistMusicId);
 }
