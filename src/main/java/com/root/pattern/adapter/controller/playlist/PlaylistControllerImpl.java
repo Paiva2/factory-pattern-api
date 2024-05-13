@@ -28,6 +28,7 @@ public class PlaylistControllerImpl implements PlaylistController {
     private final GetPlaylistUsecase getPlaylistUsecase;
     private final InsertMusicOnPlaylistUsecase insertMusicOnPlaylistUsecase;
     private final ExportPlaylistExcelUsecase exportPlaylistExcelUsecase;
+    private final DeleteMusicFromPlaylistUsecase deleteMusicFromPlaylistUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -84,6 +85,17 @@ public class PlaylistControllerImpl implements PlaylistController {
         header.setContentType(new MediaType("application", "force-download"));
         header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Playlist-data.xlsx");
 
-        return ResponseEntity.status(200).headers(header).body(output);
+        return ResponseEntity.status(HttpStatus.OK).headers(header).body(output);
+    }
+
+    @Override
+    public ResponseEntity<GetPlaylistOutputDTO> deletePlaylistMusic(
+        Authentication authentication,
+        @PathVariable("playlistMusicId") UUID playlistMusicId
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        GetPlaylistOutputDTO output = this.deleteMusicFromPlaylistUsecase.exec(userId, playlistMusicId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
     }
 }

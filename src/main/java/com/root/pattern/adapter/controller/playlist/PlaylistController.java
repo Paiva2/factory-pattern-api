@@ -7,10 +7,7 @@ import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -39,4 +36,7 @@ public interface PlaylistController {
 
     @GetMapping("/export/{playlistId}")
     ResponseEntity<ByteArrayResource> export(UUID playlistId);
+
+    @DeleteMapping("/music/{playlistMusicId}")
+    ResponseEntity<GetPlaylistOutputDTO> deletePlaylistMusic(Authentication authentication, UUID playlistMusicId);
 }

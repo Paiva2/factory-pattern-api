@@ -113,12 +113,12 @@ public class InsertMusicOnPlaylistUsecase {
 
     public void insertMusicOnPlaylist(Music music, Playlist playlist) {
         Long lastMusicOrder = this.getLastMusicOrderOnPlaylist(playlist.getId());
-        Long newMusicOrder = Objects.isNull(lastMusicOrder) ? 0 : lastMusicOrder;
+        Long newMusicOrder = Objects.isNull(lastMusicOrder) ? 0 : lastMusicOrder + 1;
 
         PlaylistMusic playlistMusic = new PlaylistMusic();
         playlistMusic.setMusic(music);
         playlistMusic.setPlaylist(playlist);
-        playlistMusic.setMusicPlaylistOrder(Math.toIntExact(newMusicOrder) + 1);
+        playlistMusic.setMusicPlaylistOrder(Math.toIntExact(newMusicOrder));
         playlistMusic.setDisabled(false);
 
         this.playlistMusicDataProvider.register(playlistMusic);

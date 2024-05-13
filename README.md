@@ -36,10 +36,10 @@
 - [x] Fetch one music by id;
 - [x] Insert musics on playlist and reorder;
 - [ ] Edit music order from playlist;
-- [ ] Remove musics from playlist and reorder;
+- [x] Remove musics from playlist and reorder;
 - [ ] Insert musics on favorite;
 - [ ] Remove musics from favorite;
-- [ ] Fetch for others playlist;
+- [x] Fetch for others playlist;
 - [ ] Copy others playlist;
 - [x] Export Albums to Excel
 -
