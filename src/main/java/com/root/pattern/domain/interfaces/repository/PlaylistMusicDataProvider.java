@@ -18,5 +18,7 @@ public interface PlaylistMusicDataProvider {
 
     void decreaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionBeingRemoved);
 
+    void increaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionFrom, Integer oldPosition);
+
     void delete(UUID playlistMusicId);
 }

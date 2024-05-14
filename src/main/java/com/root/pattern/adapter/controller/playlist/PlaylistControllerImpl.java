@@ -29,6 +29,7 @@ public class PlaylistControllerImpl implements PlaylistController {
     private final InsertMusicOnPlaylistUsecase insertMusicOnPlaylistUsecase;
     private final ExportPlaylistExcelUsecase exportPlaylistExcelUsecase;
     private final DeleteMusicFromPlaylistUsecase deleteMusicFromPlaylistUsecase;
+    private final EditMusicOrderPlaylistUsecase editMusicOrderPlaylistUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -95,6 +96,18 @@ public class PlaylistControllerImpl implements PlaylistController {
     ) {
         Long userId = Long.valueOf(authentication.getName());
         GetPlaylistOutputDTO output = this.deleteMusicFromPlaylistUsecase.exec(userId, playlistMusicId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<GetPlaylistOutputDTO> reOrder(
+        Authentication authentication,
+        @PathVariable("playlistMusicId") UUID playlistMusicId,
+        @PathVariable("newOrder") Integer newOrder
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        GetPlaylistOutputDTO output = this.editMusicOrderPlaylistUsecase.exec(userId, playlistMusicId, newOrder);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

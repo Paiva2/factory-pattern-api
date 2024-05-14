@@ -39,4 +39,7 @@ public interface PlaylistController {
 
     @DeleteMapping("/music/{playlistMusicId}")
     ResponseEntity<GetPlaylistOutputDTO> deletePlaylistMusic(Authentication authentication, UUID playlistMusicId);
+
+    @PatchMapping("/{playlistMusicId}/order/{newOrder}")
+    ResponseEntity<GetPlaylistOutputDTO> reOrder(Authentication authentication, UUID playlistMusicId, Integer newOrder);
 }

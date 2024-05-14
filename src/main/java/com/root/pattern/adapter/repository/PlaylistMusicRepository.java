@@ -39,4 +39,14 @@ public interface PlaylistMusicRepository extends JpaRepository<PlaylistMusic, UU
         @Param("playlistId") UUID playlistId,
         @Param("positionBeingRemoved") Integer positionBeingRemoved
     );
+
+    @Modifying
+    @Query("UPDATE PlaylistMusic pm SET pm.musicPlaylistOrder = pm.musicPlaylistOrder + 1 " +
+        "WHERE pm.playlist.id = :playlistId " +
+        "AND pm.musicPlaylistOrder BETWEEN CAST(:positionFrom as integer) AND CAST(:oldPosition as integer)")
+    void reorderAllOrderFromMusicOnPlaylist(
+        @Param("playlistId") UUID playlistId,
+        @Param("positionFrom") Integer positionFrom,
+        @Param("oldPosition") Integer oldPosition
+    );
 }

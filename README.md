@@ -35,7 +35,7 @@
 - [x] Fetch all musics by name;
 - [x] Fetch one music by id;
 - [x] Insert musics on playlist and reorder;
-- [ ] Edit music order from playlist;
+- [x] Edit music order from playlist and handle re-order;
 - [x] Remove musics from playlist and reorder;
 - [ ] Insert musics on favorite;
 - [ ] Remove musics from favorite;

@@ -44,6 +44,11 @@ public class PlaylistMusicDataProviderimpl implements PlaylistMusicDataProvider 
     }
 
     @Override
+    public void increaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionFrom, Integer oldPosition) {
+        this.playlistMusicRepository.reorderAllOrderFromMusicOnPlaylist(playlistId, positionFrom, oldPosition);
+    }
+
+    @Override
     public void delete(UUID playlistMusicId) {
         this.playlistMusicRepository.deleteById(playlistMusicId);
     }
