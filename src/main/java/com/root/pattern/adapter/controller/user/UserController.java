@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/user")
 public interface UserController {
-
     @PostMapping("/register")
     ResponseEntity<UserOutputDTO> registerNewUser(RegisterUserDTO dto);
 

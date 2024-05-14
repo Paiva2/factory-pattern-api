@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +21,7 @@ public class RegisterUserDTO {
     @NotEmpty
     @NotNull
     @NotBlank
+    @Size(min = 6, message = "Password must have at least 6 characters")
     private String password;
 
     @NotEmpty
