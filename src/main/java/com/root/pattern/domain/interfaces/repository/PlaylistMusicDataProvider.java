@@ -2,7 +2,9 @@ package com.root.pattern.domain.interfaces.repository;
 
 import com.root.pattern.domain.entity.PlaylistMusic;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public interface PlaylistMusicDataProvider {
@@ -21,4 +23,8 @@ public interface PlaylistMusicDataProvider {
     void increaseAllOrderFromMusicOnPlaylist(UUID playlistId, Integer positionFrom, Integer oldPosition);
 
     void delete(UUID playlistMusicId);
+
+    Set<PlaylistMusic> findAllByPlaylist(UUID playlistId);
+
+    Set<PlaylistMusic> registerAll(Set<PlaylistMusic> playlistMusics);
 }

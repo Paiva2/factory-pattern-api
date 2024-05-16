@@ -1,9 +1,6 @@
 package com.root.pattern.adapter.controller.playlist;
 
-import com.root.pattern.adapter.dto.playlist.GetPlaylistOutputDTO;
-import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
-import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
-import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
+import com.root.pattern.adapter.dto.playlist.*;
 import com.root.pattern.domain.usecase.playlist.*;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -30,6 +27,7 @@ public class PlaylistControllerImpl implements PlaylistController {
     private final ExportPlaylistExcelUsecase exportPlaylistExcelUsecase;
     private final DeleteMusicFromPlaylistUsecase deleteMusicFromPlaylistUsecase;
     private final EditMusicOrderPlaylistUsecase editMusicOrderPlaylistUsecase;
+    private final CopyPlaylistUsecase copyPlaylistUsecase;
 
     @Override
     public ResponseEntity<NewPlaylistOutputDTO> create(
@@ -110,5 +108,17 @@ public class PlaylistControllerImpl implements PlaylistController {
         GetPlaylistOutputDTO output = this.editMusicOrderPlaylistUsecase.exec(userId, playlistMusicId, newOrder);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<GetPlaylistOutputDTO> copyOthers(
+        Authentication authentication,
+        @PathVariable("playlistId") UUID playlistId,
+        @RequestBody @Valid CopyPlaylistInputDTO dto
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        GetPlaylistOutputDTO output = this.copyPlaylistUsecase.exec(userId, playlistId, dto.getPlaylistName());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(output);
     }
 }

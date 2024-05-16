@@ -1,9 +1,6 @@
 package com.root.pattern.adapter.controller.playlist;
 
-import com.root.pattern.adapter.dto.playlist.GetPlaylistOutputDTO;
-import com.root.pattern.adapter.dto.playlist.ListOwnPlaylistsOutputDTO;
-import com.root.pattern.adapter.dto.playlist.NewPlaylistInputDTO;
-import com.root.pattern.adapter.dto.playlist.NewPlaylistOutputDTO;
+import com.root.pattern.adapter.dto.playlist.*;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -42,4 +39,7 @@ public interface PlaylistController {
 
     @PatchMapping("/{playlistMusicId}/order/{newOrder}")
     ResponseEntity<GetPlaylistOutputDTO> reOrder(Authentication authentication, UUID playlistMusicId, Integer newOrder);
+
+    @PostMapping("/copy/{playlistId}")
+    ResponseEntity<GetPlaylistOutputDTO> copyOthers(Authentication authentication, UUID playlistId, CopyPlaylistInputDTO dto);
 }

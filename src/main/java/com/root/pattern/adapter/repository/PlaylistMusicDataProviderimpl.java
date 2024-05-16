@@ -5,8 +5,7 @@ import com.root.pattern.domain.interfaces.repository.PlaylistMusicDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 @AllArgsConstructor
@@ -51,5 +50,15 @@ public class PlaylistMusicDataProviderimpl implements PlaylistMusicDataProvider 
     @Override
     public void delete(UUID playlistMusicId) {
         this.playlistMusicRepository.deleteById(playlistMusicId);
+    }
+
+    @Override
+    public Set<PlaylistMusic> findAllByPlaylist(UUID playlistId) {
+        return this.playlistMusicRepository.findAllByPlaylist(playlistId);
+    }
+
+    @Override
+    public Set<PlaylistMusic> registerAll(Set<PlaylistMusic> playlistMusics) {
+        return new HashSet<>(this.playlistMusicRepository.saveAll(playlistMusics));
     }
 }

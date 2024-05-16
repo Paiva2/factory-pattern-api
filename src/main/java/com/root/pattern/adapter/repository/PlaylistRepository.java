@@ -16,7 +16,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist, UUID> {
     @Query("SELECT p FROM Playlist p " +
         "JOIN FETCH p.user u " +
         "WHERE u.id = :userId " +
-        "AND p.name = :playlistName " +
+        "AND p.name = :playlistName OR p.name LIKE CONCAT('%', :playlistName, '%\\(\\d+\\)')" +
         "AND p.disabled IS NOT TRUE")
     Optional<Playlist> findActivesByName(@Param("playlistName") String playlistName, @Param("userId") Long userId);
 
