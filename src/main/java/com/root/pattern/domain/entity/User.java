@@ -35,12 +35,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "TB_USER_FAVORITE_LIST",
-            joinColumns = {@JoinColumn(name = "USF_USER_ID", referencedColumnName = "U_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "USF_FAVORITE_ID", referencedColumnName = "FAV_ID")})
-    private Favorite userFavoriteList;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Favourite> favourites;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Playlist> playlists;

@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -45,6 +46,9 @@ public class Music {
 
     @OneToMany(mappedBy = "music")
     private Set<PlaylistMusic> playlistMusics;
+
+    @OneToMany(mappedBy = "music")
+    private List<Favourite> favourites;
 
     @Column(name = "MUSIC_IS_SINGLE", nullable = false)
     private Boolean isSingle;

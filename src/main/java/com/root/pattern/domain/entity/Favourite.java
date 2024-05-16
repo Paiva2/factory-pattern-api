@@ -14,8 +14,8 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "TB_FAVORITES")
-public class Favorite {
+@Table(name = "TB_FAVOURITES")
+public class Favourite {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "FAV_ID")
@@ -27,6 +27,9 @@ public class Favorite {
     @Column(name = "FAV_DISABLED_AT")
     private Date disabledAt;
 
+    @Column(name = "FAV_ORDER")
+    private Integer favouriteOrder;
+
     @CreationTimestamp
     @Column(name = "FAV_CREATED_AT", updatable = false, nullable = false)
     private Date createdAt;
@@ -35,6 +38,11 @@ public class Favorite {
     @Column(name = "FAV_UPDATED_AT", nullable = false)
     private Date updatedAt;
 
-    @OneToOne(mappedBy = "userFavoriteList")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FAV_USER_ID")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FAV_MUS_ID")
+    private Music music;
 }
