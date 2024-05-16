@@ -94,7 +94,7 @@ public class NewFavouriteMusicUsecase {
 
     private Favourite insertFavourite(Favourite newFavourite) {
         Integer currentLastOrderOnFav = this.getLastOrderOnUserFavourites(newFavourite.getUser().getId());
-        Integer newOrder = Objects.isNull(currentLastOrderOnFav) ? 0 : currentLastOrderOnFav + 1;
+        Integer newOrder = Objects.isNull(currentLastOrderOnFav) || currentLastOrderOnFav < 1 ? 0 : currentLastOrderOnFav + 1;
 
         newFavourite.setFavouriteOrder(newOrder);
 

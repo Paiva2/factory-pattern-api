@@ -1,7 +1,9 @@
 package com.root.pattern.adapter.controller.favourite;
 
+import com.root.pattern.adapter.dto.favourite.DeleteFavouriteOutputDTO;
 import com.root.pattern.adapter.dto.favourite.NewFavouriteOutputDTO;
 import com.root.pattern.domain.usecase.favourite.NewFavouriteMusicUsecase;
+import com.root.pattern.domain.usecase.favourite.RemoveFavouriteUsecase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class FavouriteControllerImpl implements FavouriteController {
     private final NewFavouriteMusicUsecase newFavouriteMusicUsecase;
+    private final RemoveFavouriteUsecase removeFavouriteUsecase;
 
     @Override
     public ResponseEntity<NewFavouriteOutputDTO> create(
@@ -25,5 +28,16 @@ public class FavouriteControllerImpl implements FavouriteController {
         NewFavouriteOutputDTO output = this.newFavouriteMusicUsecase.exec(userId, musicId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(output);
+    }
+
+    @Override
+    public ResponseEntity<DeleteFavouriteOutputDTO> remove(
+        Authentication authentication,
+        @PathVariable("favouriteId") UUID favouriteId
+    ) {
+        Long userId = Long.valueOf(authentication.getName());
+        DeleteFavouriteOutputDTO output = this.removeFavouriteUsecase.exec(userId, favouriteId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
     }
 }

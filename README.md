@@ -38,7 +38,7 @@
 - [x] Edit music order from playlist and handle re-order;
 - [x] Remove musics from playlist and reorder;
 - [x] Insert musics on favorite;
-- [ ] Remove musics from favorite;
+- [x] Remove musics from favorite;
 - [ ] List favourite musics;
 - [x] Fetch for others playlist;
 - [x] Copy others playlist;

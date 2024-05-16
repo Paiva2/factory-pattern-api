@@ -27,4 +27,19 @@ public class FavouriteDataProviderImpl implements FavouriteDataProvider {
     public Integer getLastOrderOnUserFavourites(Long userId) {
         return this.favouriteRepository.findLastOrderOnUserFavourites(userId);
     }
+
+    @Override
+    public void deleteById(UUID favouriteId) {
+        this.favouriteRepository.deleteById(favouriteId);
+    }
+
+    @Override
+    public Optional<Favourite> findByUserAndId(Long userId, UUID id) {
+        return this.favouriteRepository.findByUserIdAndId(userId, id);
+    }
+
+    @Override
+    public void decreaseAllPositionsFromUser(Long userId, Integer position) {
+        this.favouriteRepository.decreaseAllFromUserFromPosition(userId, position);
+    }
 }
