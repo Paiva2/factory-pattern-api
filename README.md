@@ -40,7 +40,7 @@
 - [ ] Insert musics on favorite;
 - [ ] Remove musics from favorite;
 - [x] Fetch for others playlist;
-- [ ] Copy others playlist;
+- [x] Copy others playlist;
 - [x] Export Albums to Excel
 -
 
