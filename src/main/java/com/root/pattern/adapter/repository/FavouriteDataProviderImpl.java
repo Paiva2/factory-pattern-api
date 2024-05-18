@@ -3,8 +3,12 @@ package com.root.pattern.adapter.repository;
 import com.root.pattern.domain.entity.Favourite;
 import com.root.pattern.domain.interfaces.repository.FavouriteDataProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,5 +45,10 @@ public class FavouriteDataProviderImpl implements FavouriteDataProvider {
     @Override
     public void decreaseAllPositionsFromUser(Long userId, Integer position) {
         this.favouriteRepository.decreaseAllFromUserFromPosition(userId, position);
+    }
+
+    @Override
+    public Page<Favourite> findAllByUser(Long userId, Pageable pageable) {
+        return this.favouriteRepository.findAllByUserId(userId, pageable);
     }
 }

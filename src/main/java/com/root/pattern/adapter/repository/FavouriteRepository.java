@@ -1,6 +1,8 @@
 package com.root.pattern.adapter.repository;
 
 import com.root.pattern.domain.entity.Favourite;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,5 +35,14 @@ public interface FavouriteRepository extends JpaRepository<Favourite, UUID> {
     void decreaseAllFromUserFromPosition(
         @Param("userId") Long userId,
         @Param("position") Integer position
+    );
+
+    @Query("SELECT f FROM Favourite f " +
+        "JOIN FETCH User u ON u.id = f.user.id " +
+        "JOIN FETCH Music m ON m.id = f.music.id " +
+        "WHERE u.id = :userId")
+    Page<Favourite> findAllByUserId(
+        @Param("userId") Long userId,
+        Pageable pageable
     );
 }

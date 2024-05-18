@@ -1,6 +1,8 @@
 package com.root.pattern.domain.interfaces.repository;
 
 import com.root.pattern.domain.entity.Favourite;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -17,4 +19,6 @@ public interface FavouriteDataProvider {
     Optional<Favourite> findByUserAndId(Long userId, UUID id);
 
     void decreaseAllPositionsFromUser(Long userId, Integer position);
+
+    Page<Favourite> findAllByUser(Long userId, Pageable pageable);
 }

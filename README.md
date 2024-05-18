@@ -39,7 +39,8 @@
 - [x] Remove musics from playlist and reorder;
 - [x] Insert musics on favorite;
 - [x] Remove musics from favorite;
-- [ ] List favourite musics;
+- [x] List favourite musics;
+- [ ] Reorder favourite musics;
 - [x] Fetch for others playlist;
 - [x] Copy others playlist;
 - [x] Export Albums to Excel
