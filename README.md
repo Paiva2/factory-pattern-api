@@ -40,7 +40,7 @@
 - [x] Insert musics on favorite;
 - [x] Remove musics from favorite;
 - [x] List favourite musics;
-- [ ] Reorder favourite musics;
+- [x] Reorder favourite musics;
 - [x] Fetch for others playlist;
 - [x] Copy others playlist;
 - [x] Export Albums to Excel

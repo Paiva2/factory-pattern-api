@@ -56,6 +56,7 @@ public class SecurityConfig {
                 req.antMatchers(HttpMethod.PATCH, "/api/v1/playlist/{playlistMusicId}/order/{newOrder}").hasAnyRole("USER", "ADMIN");
                 req.antMatchers(HttpMethod.PATCH, "/api/v1/musician/profile").hasAnyRole("MUSICIAN", "ADMIN");
                 req.antMatchers(HttpMethod.PATCH, "/api/v1/musician/album/{albumId}").hasAnyRole("MUSICIAN", "ADMIN");
+                req.antMatchers(HttpMethod.PATCH, "/api/v1/favourite/reorder/{favouriteId}").hasAnyRole("USER", "ADMIN");
 
                 req.antMatchers(HttpMethod.DELETE, "/api/v1/musician/album/{albumId}").hasAnyRole("MUSICIAN", "ADMIN");
                 req.antMatchers(HttpMethod.DELETE, "/api/v1/music/{musicId}").hasAnyRole("MUSICIAN", "ADMIN");

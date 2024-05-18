@@ -7,8 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,5 +48,15 @@ public class FavouriteDataProviderImpl implements FavouriteDataProvider {
     @Override
     public Page<Favourite> findAllByUser(Long userId, Pageable pageable) {
         return this.favouriteRepository.findAllByUserId(userId, pageable);
+    }
+
+    @Override
+    public Optional<Favourite> findById(UUID favouriteId) {
+        return this.favouriteRepository.findById(favouriteId);
+    }
+
+    @Override
+    public void reorderAllPositionsByUserBetween(Long userId, Integer newOrder, Integer oldOrder) {
+        this.favouriteRepository.reorderListByUserBetween(userId, newOrder, oldOrder);
     }
 }

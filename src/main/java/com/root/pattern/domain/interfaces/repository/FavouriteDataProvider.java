@@ -21,4 +21,8 @@ public interface FavouriteDataProvider {
     void decreaseAllPositionsFromUser(Long userId, Integer position);
 
     Page<Favourite> findAllByUser(Long userId, Pageable pageable);
+
+    Optional<Favourite> findById(UUID favouriteId);
+
+    void reorderAllPositionsByUserBetween(Long userId, Integer newOrder, Integer oldOrder);
 }

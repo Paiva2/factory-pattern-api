@@ -45,4 +45,15 @@ public interface FavouriteRepository extends JpaRepository<Favourite, UUID> {
         @Param("userId") Long userId,
         Pageable pageable
     );
+
+    @Modifying
+    @Query("UPDATE Favourite f " +
+        "SET f.favouriteOrder = f.favouriteOrder + 1 " +
+        "WHERE f.user.id = :userId " +
+        "AND f.favouriteOrder BETWEEN CAST(:newOrder as integer) AND CAST(:oldOrder as integer)")
+    void reorderListByUserBetween(
+        @Param("userId") Long userId,
+        @Param("newOrder") Integer newOrder,
+        @Param("oldOrder") Integer oldOrder
+    );
 }
