@@ -1,6 +1,7 @@
 package com.root.pattern.adapter.controller.user;
 
 import com.root.pattern.adapter.dto.user.*;
+import com.root.pattern.domain.enums.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -19,4 +20,7 @@ public interface UserController {
 
     @PatchMapping("/profile")
     ResponseEntity<UserOutputDTO> updateProfile(Authentication authentication, UpdateUserProfileDTO dto);
+
+    @PostMapping("/forgot-password")
+    ResponseEntity<ForgotPasswordOutputDTO> forgotPassword(Role userType, ForgotPasswordDTO dto);
 }

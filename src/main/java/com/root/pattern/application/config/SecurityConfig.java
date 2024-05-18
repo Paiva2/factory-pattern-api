@@ -25,6 +25,7 @@ public class SecurityConfig {
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/register").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/musician/register").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/user/login").permitAll();
+                req.antMatchers(HttpMethod.POST, "/api/v1/user/forgot-password").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/musician/login").permitAll();
                 req.antMatchers(HttpMethod.POST, "/api/v1/musician/album").hasAnyRole("MUSICIAN", "ADMIN");
                 req.antMatchers(HttpMethod.POST, "/api/v1/music/new/**").hasAnyRole("MUSICIAN", "ADMIN");

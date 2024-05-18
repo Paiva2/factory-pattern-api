@@ -2,15 +2,14 @@ package com.root.pattern.adapter.controller.user;
 
 import com.root.pattern.adapter.dto.user.*;
 import com.root.pattern.adapter.utils.JwtHandler;
-import com.root.pattern.domain.usecase.user.AuthenticateUserUsecase;
-import com.root.pattern.domain.usecase.user.GetUserProfileUsecase;
-import com.root.pattern.domain.usecase.user.RegisterUserUsecase;
-import com.root.pattern.domain.usecase.user.UpdateUserProfileUsecase;
+import com.root.pattern.domain.enums.Role;
+import com.root.pattern.domain.usecase.user.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -22,6 +21,7 @@ public class UserControllerImpl implements UserController {
     private final AuthenticateUserUsecase authenticateUserUsecase;
     private final GetUserProfileUsecase getUserProfileUsecase;
     private final UpdateUserProfileUsecase updateUserProfileUsecase;
+    private final ForgotPasswordUsecase forgotPasswordUsecase;
 
     private final JwtHandler jwtHandler;
 
@@ -64,6 +64,16 @@ public class UserControllerImpl implements UserController {
     ) {
         Long userId = Long.valueOf(authentication.getName());
         UserOutputDTO output = this.updateUserProfileUsecase.exec(dto.toEntity(userId));
+
+        return ResponseEntity.status(HttpStatus.OK).body(output);
+    }
+
+    @Override
+    public ResponseEntity<ForgotPasswordOutputDTO> forgotPassword(
+        @RequestParam(value = "type") Role userType,
+        @RequestBody @Valid ForgotPasswordDTO dto
+    ) {
+        ForgotPasswordOutputDTO output = this.forgotPasswordUsecase.exec(dto.getEmail(), userType);
 
         return ResponseEntity.status(HttpStatus.OK).body(output);
     }

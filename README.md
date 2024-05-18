@@ -1,4 +1,4 @@
-# Playlist API - BUILDING
+# Playlist API
 
 ### Technologies
 
@@ -19,7 +19,7 @@
 - [x] Login as an user or musician;
 - [x] Get profile as user;
 - [x] Get profile as musician;
-- [ ] Recover password receiving a new one on e-mail;
+- [x] Recover password receiving a new one on e-mail;
 - [x] Update profile as user or musician.
 
 #### User context
