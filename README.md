@@ -8,6 +8,7 @@
 - Docker
 - Postgres
 - Spring Boot
+- Spring Security
 
 ### Functionalities
 
